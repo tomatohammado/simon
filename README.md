@@ -13,8 +13,13 @@ WDI Project 1
 - [css transition property](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)
 - [make element unclickable in css](https://stackoverflow.com/a/37216892)
 - [get random numbers in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+- [pass arguments to callback in event listener](https://stackoverflow.com/a/979344)
+- [jQuery select element by attribute, specifically `[data-]`](https://stackoverflow.com/a/29906777)
 
 ## Reach goals:
 - make it so you can't click a button while it is animating
   - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
   - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
+- I have to do something reaaaaally hacky to get the playPattern() function to work
+  - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index
+  - is there a better way to get a function to run on each element in an array sequentially?
