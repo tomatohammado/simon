@@ -30,7 +30,6 @@ class SimonGame {
     let targetIndex = parseInt(target.attr('data-index'))
 
     if (targetIndex === this.pattern[this.playIteration]) {
-
       selectButtonStyle(target)
       this.playIteration++
     } else {
@@ -38,20 +37,21 @@ class SimonGame {
       return
     }
 
+    this.checkFinalInput()
+  }
+
+  checkFinalInput () {
     if (this.playIteration === this.pattern.length) {
       console.log(`it's a match`)
-      this.playIteration = 0
       let self = this
       let invokePlayPattern = this.playPattern.bind(self)
+      this.playIteration = 0
       setTimeout(invokePlayPattern, 2000)
     }
   }
 }
 
 $(document).ready(function () {
-  /* add event listener to all .game-button's
-  // will probably have to change the handler in the future
-  */
   $('.button.start-game').click((e) => startGame())
 })
 
