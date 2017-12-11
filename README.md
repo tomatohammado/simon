@@ -10,3 +10,4 @@ WDI Project 1
 - (jQuery `.click()`)[https://api.jquery.com/click/]
 - (difference between `$(this)` and `event.target`)[https://stackoverflow.com/a/21667010]
 - (jQuery setTimeout)[https://www.sitepoint.com/jquery-settimeout-function-examples/]
+- (css transition property)[https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions]
