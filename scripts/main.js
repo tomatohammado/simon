@@ -55,6 +55,8 @@ class SimonGame {
   checkFinalInput () {
     if (this.playIteration === this.pattern.length) {
       console.log(`it's a match`)
+      $('.container.play-game-buttons').toggleClass('match-success')
+      setTimeout(() => $('.container.play-game-buttons').toggleClass('match-success'), 1000)
       this.iteratePattern()
       let self = this
       let invokePlayPattern = this.playPattern.bind(self)

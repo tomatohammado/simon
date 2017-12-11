@@ -30,6 +30,12 @@ header {
   flex-direction: row;
   justify-content: center;
   border-radius: 25px;
+  transition: all 1000ms ease;
+}
+
+.container.play-game-buttons.match-success {
+  background-color: rgba(0, 255, 0, .3);
+  box-shadow: 0 0 2em #0F0
 }
 
 .button.play-game {
