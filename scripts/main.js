@@ -21,9 +21,12 @@ class SimonGame {
     let baseTimeout = 1000
     let patternLength = this.pattern.length
     let totalDuration = patternLength * baseTimeout
-    let toggleBoardUnclickable = () => $('.container.game-board').toggleClass('unclicakble')
-    toggleBoardUnclickable()
-    setTimeout(toggleBoardUnclickable, totalDuration)
+    let togglePlayPatternClasses = () => {
+      $('.container.game-board').toggleClass('unclicakble')
+      $('.container.play-game-buttons').toggleClass('isPlaying')
+    }
+    togglePlayPatternClasses()
+    setTimeout(togglePlayPatternClasses, totalDuration)
     /* trigger styles on corresponding button for each item in patternArray */
     for (let i = 0; i < patternLength; i++) {
       let timeout = i * baseTimeout

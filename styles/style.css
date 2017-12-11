@@ -33,14 +33,20 @@ header {
   transition: all 1000ms ease;
 }
 
+.container.play-game-buttons.isPlaying {
+  background-color: rgba(150, 150, 150, .3);
+  box-shadow: 0 0 2em #969696;
+  pointer-events: none;
+}
+
 .container.play-game-buttons.match-success {
   background-color: rgba(0, 255, 0, .3);
-  box-shadow: 0 0 2em #0F0
+  box-shadow: 0 0 2em #0F0;
 }
 
 .container.play-game-buttons.match-fail {
   background-color: rgba(255, 0, 0, .3);
-  box-shadow: 0 0 2em #F00
+  box-shadow: 0 0 2em #F00;
 }
 
 .button.play-game {
