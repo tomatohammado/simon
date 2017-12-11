@@ -18,9 +18,15 @@ class SimonGame {
     this.pattern.push(this.getRandomIndex())
   }
   playPattern () {
+    let baseTimeout = 1000
+    let patternLength = this.pattern.length
+    let totalDuration = patternLength * baseTimeout
+    let toggleBoardUnclickable = () => $('.container.game-board').toggleClass('unclicakble')
+    toggleBoardUnclickable()
+    setTimeout(toggleBoardUnclickable, totalDuration)
     /* trigger styles on corresponding button for each item in patternArray */
-    for (let i = 0; i < this.pattern.length; i++) {
-      let timeout = i * 1000
+    for (let i = 0; i < patternLength; i++) {
+      let timeout = i * baseTimeout
       setTimeout(() => {
         selectButtonStyle($(`[data-index="${this.pattern[i]}"]`))
       }, timeout)
