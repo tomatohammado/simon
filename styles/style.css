@@ -1,5 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
 .unclickable {
   pointer-events: none;
+}
+
+header {
+  text-align: center;
 }
 
 .button.start-game {
@@ -10,7 +18,21 @@
   border-radius: 2px;
 }
 
-.game.play-button {
+.container.game-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container.play-game-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 25px;
+}
+
+.button.play-game {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -21,22 +43,22 @@
 
 /* Using colors from Google Logo (since 2015)
 // Selected using color picker via source image https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
-.game.play-button[data-index="0"] {
+.button.play-game[data-index="0"] {
   background-color: #FFBC05
 }
 
-.game.play-button[data-index="1"] {
+.button.play-game[data-index="1"] {
   background-color: #5C6DF3;
 }
 
-.game.play-button[data-index="2"] {
+.button.play-game[data-index="2"] {
   background-color: #F63232;
 }
 
-.game.play-button[data-index="3"] {
+.button.play-game[data-index="3"] {
   background-color: #31AD51;
 }
 
-.game.play-button.selected {
+.button.play-game.selected {
   transform: scale(1.2);
 }

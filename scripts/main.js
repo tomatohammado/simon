@@ -71,9 +71,9 @@ $(document).ready(function () {
 /* Functions */
 function startGame () {
   let gameInstance = new SimonGame()
-  gameInstance.totalPlayButtons = $('.game.play-button').length
+  gameInstance.totalPlayButtons = $('.button.play-game').length
 
-  $('.game.play-button').click((eventObject) => gameInstance.getInput(eventObject))
+  $('.button.play-game').click((eventObject) => gameInstance.getInput(eventObject))
   gameInstance.iteratePattern()
   gameInstance.playPattern()
 }
