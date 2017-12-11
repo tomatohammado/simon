@@ -5,29 +5,35 @@ class SimonGame {
     this.pattern = []
     this.totalPlayButtons = 0
     this.playIteration = 0
-    this.isStrict = true
+    this.isStrict = false
   }
+  /* Object Methods */
   getRandomIndex () {
-    /* get random integer between two numbers via https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random */
-    return Math.floor(Math.random() * this.totalPlayButtons)
     /* NOTE: the lower bound is inclusive, the upper bound is exclusive
-    // so if the totalPlayButtons === 4, this will return 0-3 */
+    // so if the totalPlayButtons === 4, this will return an integer from 0-3 */
+    return Math.floor(Math.random() * this.totalPlayButtons)
   }
 
   iteratePattern () {
+    /* Adds a random index to the objects .pattern property */
     this.pattern.push(this.getRandomIndex())
   }
-  playPattern () {
+
+  resetPlayIteration () {
+    /* sets playIteration to 0 */
+    this.playIteration = 0
+  }
+
+  displayPattern () {
+    /* This has two major parts that occur concurently... */
+    let self = this
     let baseTimeout = 1000
     let patternLength = this.pattern.length
     let totalDuration = patternLength * baseTimeout
-    let togglePlayPatternClasses = () => {
-      $('.container.game-board').toggleClass('unclicakble')
-      $('.container.play-game-buttons').toggleClass('isPlaying')
-    }
-    togglePlayPatternClasses()
-    setTimeout(togglePlayPatternClasses, totalDuration)
-    /* trigger styles on corresponding button for each item in patternArray */
+    // 1) add styles to the containers and make them unclickable while animating
+    this.toggleDisplayPattern()
+    setTimeout((this.toggleDisplayPattern).bind(self), totalDuration)
+    // 2) display each item in the pattern array
     for (let i = 0; i < patternLength; i++) {
       let timeout = i * baseTimeout
       setTimeout(() => {
@@ -36,7 +42,8 @@ class SimonGame {
     }
   }
 
-  getInput (e) {
+  getPlayInput (e) {
+    /* event handler for the .play-button's */
     let target = $(e.target)
     let targetIndex = parseInt(target.attr('data-index'))
 
@@ -44,30 +51,42 @@ class SimonGame {
       selectButtonStyle(target)
       this.playIteration++
     } else {
-      console.log('not a match')
-      $('.container.play-game-buttons').toggleClass('match-fail')
-      setTimeout(() => $('.container.play-game-buttons').toggleClass('match-fail'), 1000)
       let self = this
-      let invokePlayPattern = this.playPattern.bind(self)
-      this.playIteration = 0
-      setTimeout(invokePlayPattern, 2000)
+      this.toggleMatchFail()
+      setTimeout(() => self.toggleMatchFail(), 1000)
+      this.resetPlayIteration()
+      setTimeout(this.displayPattern.bind(self), 2000)
       return
     }
 
-    this.checkFinalInput()
+    this.checkInputFinal()
   }
 
-  checkFinalInput () {
+  checkInputFinal () {
+    /* Determines if the current match is the final match in the pattern
+    // will only run after a successful match */
     if (this.playIteration === this.pattern.length) {
-      console.log(`it's a match`)
-      $('.container.play-game-buttons').toggleClass('match-success')
-      setTimeout(() => $('.container.play-game-buttons').toggleClass('match-success'), 1000)
-      this.iteratePattern()
       let self = this
-      let invokePlayPattern = this.playPattern.bind(self)
-      this.playIteration = 0
-      setTimeout(invokePlayPattern, 2000)
+      this.toggleMatchSuccess()
+      setTimeout(() => self.toggleMatchSuccess(), 1000)
+      this.iteratePattern()
+      this.resetPlayIteration()
+      setTimeout(this.displayPattern.bind(self), 2000)
     }
+  }
+
+  /* These Methods are used to toggle styles for different dislay states */
+  toggleDisplayPattern () {
+    $('.container.game-board').toggleClass('unclicakble')
+    $('.container.play-game-buttons').toggleClass('isPlaying')
+  }
+
+  toggleMatchFail () {
+    $('.container.play-game-buttons').toggleClass('match-fail')
+  }
+
+  toggleMatchSuccess () {
+    $('.container.play-game-buttons').toggleClass('match-success')
   }
 }
 
@@ -80,9 +99,9 @@ function startGame () {
   let gameInstance = new SimonGame()
   gameInstance.totalPlayButtons = $('.button.play-game').length
 
-  $('.button.play-game').click((eventObject) => gameInstance.getInput(eventObject))
+  $('.button.play-game').click((eventObject) => gameInstance.getPlayInput(eventObject))
   gameInstance.iteratePattern()
-  gameInstance.playPattern()
+  gameInstance.displayPattern()
 }
 
 function selectButtonStyle (targetElement) {
