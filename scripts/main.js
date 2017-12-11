@@ -1,47 +1,73 @@
 const $ = window.jQuery
 
+class SimonGame {
+  constructor () {
+    this.pattern = []
+    this.totalPlayButtons = 0
+    this.playIteration = 0
+    this.isStrict = true
+  }
+  getRandomIndex () {
+    /* get random integer between two numbers via https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random */
+    return Math.floor(Math.random() * this.totalPlayButtons)
+    /* NOTE: the lower bound is inclusive, the upper bound is exclusive
+    // so if the totalPlayButtons === 4, this will return 0-3 */
+  }
+
+  playPattern () {
+    /* trigger styles on corresponding button for each item in patternArray */
+    this.pattern.push(this.getRandomIndex())
+    for (let i = 0; i < this.pattern.length; i++) {
+      let timeout = i * 1000
+      setTimeout(() => {
+        selectButtonStyle($(`[data-index="${this.pattern[i]}"]`))
+      }, timeout)
+    }
+  }
+
+  getInput (e) {
+    let target = $(e.target)
+    let targetIndex = parseInt(target.attr('data-index'))
+
+    if (targetIndex === this.pattern[this.playIteration]) {
+      selectButtonStyle(target)
+      console.log(targetIndex)
+      console.log(this.pattern[this.playIteration])
+      this.playIteration++
+      // setTimeout(this.getInput, 1000)
+    } else {
+      console.log('not a match')
+      return
+    }
+
+    if (this.playIteration === this.pattern.length) {
+      console.log(`it's a match`)
+      this.playIteration = 0
+      console.log(this.pattern)
+      setTimeout(this.playPattern, 2000)
+    }
+  }
+}
+
 $(document).ready(function () {
   /* add event listener to all .game-button's
   // will probably have to change the handler in the future
   */
-  $('.game.play-button').click((e) => selectButton(e.target))
-
-  /* array holding the pattern the game will play back to the player
-  // used to check the validity of the user response, as well
-  */
-  let gamePattern = []
-  let numberOfButtons = $('.game.play-button').length
-  /* add index to gamePattern array */
-  gamePattern.push(getRandomIndex(numberOfButtons))
+  $('.button.start-game').click((e) => startGame())
 })
 
 /* Functions */
+function startGame () {
+  let gameInstance = new SimonGame()
+  gameInstance.totalPlayButtons = $('.game.play-button').length
 
-function selectButton (targetElement) {
-  /* callback function for when a .game-button is clicked
-  // it will add, then remove, a .selected class to indicate a button has been pressed
-  // - I will use another function to handle whether the button is being presented to the the user as part of the input pattern, or if it is part of the users input
-  // - I think the function to remove the .selected class can be abstracted out. I need to read the documentation on .click() and possibly .on() to see what my options are
-  */
+  $('.game.play-button').click((eventObject) => gameInstance.getInput(eventObject))
 
-  let target = $(targetElement)
-  target.toggleClass('selected')
-  setTimeout(() => target.toggleClass('selected'), 500)
+  gameInstance.playPattern()
 }
 
-function getRandomIndex (upperLimit) {
-  /* get random integer between two numbers via https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-  // NOTE: the lower bound is inclusive, the upper bound is exclusive
-  so for our purposes, if the upperLimit === 4, then this will return an integer between 0-3 */
-  return Math.floor(Math.random() * upperLimit)
-}
-
-function playPattern (patternArray) {
-  /* read through each element in patternArray, and trigger the button that responds the the corresponding index */
-  for (let i = 0; i < patternArray.length; i++) {
-    let timeout = i * 1000
-    setTimeout(() => {
-      selectButton(`[data-index="${patternArray[i]}"]`)
-    }, timeout)
-  }
+function selectButtonStyle (targetElement) {
+  /* it will add, then remove, a .selected class to indicate a button has been pressed */
+  targetElement.toggleClass('selected')
+  setTimeout(() => targetElement.toggleClass('selected'), 500)
 }
