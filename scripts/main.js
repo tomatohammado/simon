@@ -30,10 +30,10 @@ class SimonGame {
     let baseTimeout = 1000
     let patternLength = this.pattern.length
     let totalDuration = patternLength * baseTimeout
-    // 1) add styles to the containers and make them unclickable while animating
+    /* 1) add styles to the containers and make them unclickable while animating */
     this.toggleDisplayPattern()
     setTimeout((this.toggleDisplayPattern).bind(self), totalDuration)
-    // 2) display each item in the pattern array
+    /* 2) display each item in the pattern array */
     for (let i = 0; i < patternLength; i++) {
       let timeout = i * baseTimeout
       setTimeout(() => {
