@@ -1,3 +1,25 @@
-body {
-  background-color: #F00;
+.game-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #888;
+  margin: 10px;
+}
+
+/* Using colors from Google Logo (since 2015)
+// Selected using color picker via source image https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
+.game-button[data-index="0"] {
+  background-color: #FFBC05
+}
+
+.game-button[data-index="1"] {
+  background-color: #5C6DF3;
+}
+
+.game-button[data-index="2"] {
+  background-color: #F63232;
+}
+
+.game-button[data-index="3"] {
+  background-color: #31AD51;
 }
