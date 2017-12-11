@@ -1,5 +1,5 @@
 const $ = window.jQuery
 
-if (jQuery !== undefined) {
+$(document).ready(function () {
   console.log('jQuery loaded')
-}
+})
