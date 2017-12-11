@@ -74,6 +74,7 @@ function startGame () {
 
 function selectButtonStyle (targetElement) {
   /* it will add, then remove, a .selected class to indicate a button has been pressed */
-  targetElement.toggleClass('selected')
+  targetElement.toggleClass('selected unclickable')
   setTimeout(() => targetElement.toggleClass('selected'), 500)
+  setTimeout(() => targetElement.toggleClass('unclickable'), 1000)
 }
