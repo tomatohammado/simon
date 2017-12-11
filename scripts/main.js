@@ -30,11 +30,9 @@ class SimonGame {
     let targetIndex = parseInt(target.attr('data-index'))
 
     if (targetIndex === this.pattern[this.playIteration]) {
+
       selectButtonStyle(target)
-      console.log(targetIndex)
-      console.log(this.pattern[this.playIteration])
       this.playIteration++
-      // setTimeout(this.getInput, 1000)
     } else {
       console.log('not a match')
       return
@@ -43,8 +41,9 @@ class SimonGame {
     if (this.playIteration === this.pattern.length) {
       console.log(`it's a match`)
       this.playIteration = 0
-      console.log(this.pattern)
-      setTimeout(this.playPattern, 2000)
+      let self = this
+      let invokePlayPattern = this.playPattern.bind(self)
+      setTimeout(invokePlayPattern, 2000)
     }
   }
 }
