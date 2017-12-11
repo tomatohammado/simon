@@ -12,6 +12,7 @@ WDI Project 1
 - [jQuery setTimeout](https://www.sitepoint.com/jquery-settimeout-function-examples/)
 - [css transition property](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)
 - [make element unclickable in css](https://stackoverflow.com/a/37216892)
+- [get random numbers in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
 
 ## Reach goals:
 - make it so you can't click a button while it is animating
