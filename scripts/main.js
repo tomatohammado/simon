@@ -1,1 +1,5 @@
-console.log('main.js loaded')
+const $ = window.jQuery
+
+if (jQuery !== undefined) {
+  console.log('jQuery loaded')
+}
