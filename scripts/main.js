@@ -14,9 +14,11 @@ class SimonGame {
     // so if the totalPlayButtons === 4, this will return 0-3 */
   }
 
+  iteratePattern () {
+    this.pattern.push(this.getRandomIndex())
+  }
   playPattern () {
     /* trigger styles on corresponding button for each item in patternArray */
-    this.pattern.push(this.getRandomIndex())
     for (let i = 0; i < this.pattern.length; i++) {
       let timeout = i * 1000
       setTimeout(() => {
@@ -34,6 +36,10 @@ class SimonGame {
       this.playIteration++
     } else {
       console.log('not a match')
+      let self = this
+      let invokePlayPattern = this.playPattern.bind(self)
+      this.playIteration = 0
+      setTimeout(invokePlayPattern, 2000)
       return
     }
 
@@ -43,6 +49,7 @@ class SimonGame {
   checkFinalInput () {
     if (this.playIteration === this.pattern.length) {
       console.log(`it's a match`)
+      this.iteratePattern()
       let self = this
       let invokePlayPattern = this.playPattern.bind(self)
       this.playIteration = 0
@@ -61,7 +68,7 @@ function startGame () {
   gameInstance.totalPlayButtons = $('.game.play-button').length
 
   $('.game.play-button').click((eventObject) => gameInstance.getInput(eventObject))
-
+  gameInstance.iteratePattern()
   gameInstance.playPattern()
 }
 
