@@ -42,6 +42,8 @@ class SimonGame {
       this.playIteration++
     } else {
       console.log('not a match')
+      $('.container.play-game-buttons').toggleClass('match-fail')
+      setTimeout(() => $('.container.play-game-buttons').toggleClass('match-fail'), 1000)
       let self = this
       let invokePlayPattern = this.playPattern.bind(self)
       this.playIteration = 0
