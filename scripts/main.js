@@ -4,13 +4,13 @@ $(document).ready(function () {
   /* add event listener to all .game-button's
   // will probably have to change the handler in the future
   */
-  $('.game-button').click((e) => selectButton(e.target))
+  $('.game.play-button').click((e) => selectButton(e.target))
 
   /* array holding the pattern the game will play back to the player
   // used to check the validity of the user response, as well
   */
   let gamePattern = []
-  let numberOfButtons = $('.game-button').length
+  let numberOfButtons = $('.game.play-button').length
   /* add index to gamePattern array */
   gamePattern.push(getRandomIndex(numberOfButtons))
 })

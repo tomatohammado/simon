@@ -1,4 +1,12 @@
-.game-button {
+.button.start-game {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 10px;
+  border: 1px solid #444;
+  border-radius: 2px;
+}
+
+.game.play-button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -9,23 +17,23 @@
 
 /* Using colors from Google Logo (since 2015)
 // Selected using color picker via source image https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
-.game-button[data-index="0"] {
+.game.play-button[data-index="0"] {
   background-color: #FFBC05
 }
 
-.game-button[data-index="1"] {
+.game.play-button[data-index="1"] {
   background-color: #5C6DF3;
 }
 
-.game-button[data-index="2"] {
+.game.play-button[data-index="2"] {
   background-color: #F63232;
 }
 
-.game-button[data-index="3"] {
+.game.play-button[data-index="3"] {
   background-color: #31AD51;
 }
 
-.game-button.selected {
+.game.play-button.selected {
   transform: scale(1.2);
   pointer-events: none;
 }

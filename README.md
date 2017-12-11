@@ -16,7 +16,7 @@ WDI Project 1
 - [pass arguments to callback in event listener](https://stackoverflow.com/a/979344)
 - [jQuery select element by attribute, specifically `[data-]`](https://stackoverflow.com/a/29906777)
 
-## Reach goals:
+## Reach Goals
 - make it so you can't click a button while it is animating
   - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
   - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
