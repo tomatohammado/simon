@@ -1,6 +1,19 @@
 # WDI Project 1: Simon
 
 ## Things I Learned
+
+with `Math.random()`, you can get a number between 0 and 1
+
+it is inclusive of 0, meaning you can get 0, but exclusive of 1, so 1 is impossible.
+
+so, for my random index method which implements this:
+```js
+return Math.floor(Math.random() * $('.game-input').length)
+```
+
+If there are 4 buttons, it will only return an integer between 0-3
+
+---
 The `this` keyword behaves a differently depending on the context in which it is used.
 
 One example is within callback functions. `this` often refers to the global `Window` object, which is not what I want let me tell you.
@@ -57,6 +70,7 @@ this.toggleDisplay(inputsContainerNodejQ, 'display-pattern', totalDuration)
   - refactor the startGame global function, make anonymous and adjust for reset
 
 ## Bonus Goals
+- [ ] SASS. SASS first and foremost
 - [ ] adding a modal would be cool (http://jquerymodal.com/)
 
 ## Sources

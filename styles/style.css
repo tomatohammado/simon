@@ -55,7 +55,7 @@ header {
   height: 30px;
   border-radius: 50%;
   margin: 10px;
-  transition: all 500ms ease;
+  transition: all 500ms ease-out;
 }
 
 .game-input.display-selected {
