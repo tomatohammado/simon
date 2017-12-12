@@ -18,13 +18,13 @@ WDI Project 1
 
 ## Reach Goals
 1. make it so you can't click a button while it is animating
-  - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
-  - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
+   - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
+   - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
 2. I have to do something reaaaaally hacky to get the playPattern() function to work
-  - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index
-  - is there a better way to get a function to run on each element in an array sequentially?
+   - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index
+   - is there a better way to get a function to run on each element in an array sequentially?
 3. the start button is bugged. It works the first time, and not any time after that
-  - so, I should work on the reset-buttons
+   - so, I should work on the reset-buttons
 4. adding a modal would be cool (http://jquerymodal.com/)
 5. consolidating the `toggleDisplay*()` methods into one reusable function
 6. making toggleDisplaySelected a method and not a global function
