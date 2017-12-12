@@ -1,8 +1,7 @@
-# simon
-WDI Project 1
+# WDI Project 1: Simon
 
 ## Things I Learned
-- The `this` keyword behaves a differently depending on the context in which it is used.
+The `this` keyword behaves a differently depending on the context in which it is used.
 
 One example is within callback functions. `this` often refers to the global `Window` object, which is not what I want let me tell you.
 
@@ -24,6 +23,7 @@ somePropertyMethod () {
   setTimeout(() => {
     this.showPattern()
   }, this.baseTimeout)
+}
 ```
 
 This surprised me. Using the arrow function expression, the `this` in the nested function still refers to the object instance.
@@ -36,6 +36,21 @@ Refactoring `toggleDisplay` methods
 At one point, I had *five* separate methods that all did effectively the same thing.
 
 So, I refactored them.
+
+## Reach Goals
+1. consolidating the `toggleDisplay()` methods into one reusable function
+2. make it so you can't click a button while it is animating
+   - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
+   - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
+3. the start button is bugged. It works the first time, and not any time after that
+   - so, I should work on the reset-buttons
+4. adding a modal would be cool (http://jquerymodal.com/)
+
+## Completed Goals
+~~- I have to do something reaaaaally hacky to get the playPattern() function to work~~
+    ~~- because all of the functions run at the same time, I have to set increment a timeout variable based on the current index~~
+    ~~- is there a better way to get a function to run on each element in an array sequentially?~~
+~~ - making `toggleDisplaySelected` a method and not a global function~~
 
 ## Sources
 - [Google Logo, used as reference for button colors](https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png)
@@ -52,15 +67,3 @@ So, I refactored them.
 - [pass arguments to callback in event listener](https://stackoverflow.com/a/979344)
 - [jQuery select element by attribute, specifically `[data-]`](https://stackoverflow.com/a/29906777)
 
-## Reach Goals
-1. make it so you can't click a button while it is animating
-   - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
-   - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
-2. I have to do something reaaaaally hacky to get the playPattern() function to work
-   - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index
-   - is there a better way to get a function to run on each element in an array sequentially?
-3. the start button is bugged. It works the first time, and not any time after that
-   - so, I should work on the reset-buttons
-4. adding a modal would be cool (http://jquerymodal.com/)
-5. consolidating the `toggleDisplay*()` methods into one reusable function
-6. making toggleDisplaySelected a method and not a global function
