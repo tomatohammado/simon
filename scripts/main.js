@@ -146,7 +146,7 @@ $(document).ready(function () {
     newGameNodejQ.click((e) => gameInstance.startNewGame())
 
     /* add event listener to `.game-input`s */
-    $('.game-input').click((eventObject) => gameInstance.getSubInput(eventObject))
+    $('.container.game-inputs').click((eventObject) => gameInstance.getSubInput(eventObject))
 
     /* Begin game */
     gameInstance.startNewGame()
