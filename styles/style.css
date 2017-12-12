@@ -36,7 +36,6 @@ header {
 .container.game-inputs.display-pattern {
   background-color: rgba(150, 150, 150, .3);
   box-shadow: 0 0 2em #969696;
-  pointer-events: none;
   transform: scale(1.2);
 }
 
@@ -55,10 +54,11 @@ header {
   height: 30px;
   border-radius: 50%;
   margin: 10px;
-  transition: all 500ms ease-out;
+  transition-duration: 500ms;
 }
 
 .game-input.display-selected {
+  transition-timing-function: ease-out;
   transform: scale(1.2);
 }
 

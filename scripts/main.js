@@ -1,15 +1,16 @@
 const $ = window.jQuery
 
-class SimonGame {
-  constructor () {
-    this.pattern = []
-    this.subCounter = 0
-    this.baseTimeout = 1000
-    this.isStrict = false
+/* CLASSES */
+/* ================================================= */
+class Game {
+  /* Parent Class */
+  /* ------------------------------------------------- */
+  constructor (timeoutDuration) {
+    this.boardNodejQ = $('.container.game-board')
+    this.inputsContainerNodejQ = $('.container.game-inputs')
+    this.baseTimeout = timeoutDuration
   }
-  /* METHODS */
-  /* ================================================= */
-  /* Object Utility Methods */
+  /* Utility Methods */
   /* ------------------------------------------------- */
   toggleDisplay (nodejQ, displayClass, duration) {
     /* - adds a display class to the give node jQuery object,
@@ -18,7 +19,19 @@ class SimonGame {
     nodejQ.toggleClass(displayClass)
     setTimeout(() => nodejQ.toggleClass(displayClass), duration)
   }
+}
 
+class Simon extends Game {
+  /* Child Class */
+  /* ------------------------------------------------- */
+  constructor (timeoutDuration) {
+    super(timeoutDuration)
+    this.pattern = []
+    this.subCounter = 0
+    this.isStrict = false
+  }
+  /* Utility Methods */
+  /* ------------------------------------------------- */
   getRandomPatternIndex () {
     /* Return random index for one of the possible buttons
     // - see README.md for notes on Math.random() */
@@ -44,7 +57,7 @@ class SimonGame {
     this.pattern = []
   }
 
-  /* Core Game Methods */
+  /* Core Simon Game Methods */
   /* ------------------------------------------------- */
   startNewGame () {
     /* pretty straigtfoward: wipe the slate clean and begin the game again */
@@ -58,13 +71,11 @@ class SimonGame {
   showPattern () {
     let patternLength = this.pattern.length
     let totalDuration = (patternLength + 1) * this.baseTimeout
-    let boardNodejQ = $('.container.game-board')
-    let inputsContainerNodejQ = $('.container.game-inputs')
 
     /* 1) add classes to the game containers, to highlight the 'display pattern' phase and make the board unclickable for the duration */
     /* ---------------- */
-    this.toggleDisplay(boardNodejQ, 'unclickable', totalDuration)
-    this.toggleDisplay(inputsContainerNodejQ, 'display-pattern', totalDuration)
+    this.toggleDisplay(this.boardNodejQ, 'unclickable', (totalDuration + this.baseTimeout))
+    this.toggleDisplay(this.inputsContainerNodejQ, 'display-pattern', totalDuration)
 
     /* 2) show each element in the pattern */
     /* ---------------- */
@@ -103,8 +114,8 @@ class SimonGame {
       // - reset the subCounter, so the next invocation of checkInputMatch starts from the beginning of the .pattern array
       // - show the pattern again
       /* ---------------- */
-      let inputsContainerNodejQ = $('.container.game-inputs')
-      this.toggleDisplay(inputsContainerNodejQ, 'display-match-fail', this.baseTimeout)
+      this.toggleDisplay(this.inputsContainerNodejQ, 'display-match-fail', this.baseTimeout)
+      this.toggleDisplay(this.boardNodejQ, 'unclickable', this.baseTimeout * 2)
       this.resetSubCounter()
       setTimeout(() => {
         this.showPattern()
@@ -117,8 +128,8 @@ class SimonGame {
     /* Determines if the current match is the final match in the pattern
     /* ---------------- */
     if (this.subCounter === this.pattern.length) {
-      let inputsContainerNodejQ = $('.container.game-inputs')
-      this.toggleDisplay(inputsContainerNodejQ, 'display-match-success', this.baseTimeout)
+      this.toggleDisplay(this.inputsContainerNodejQ, 'display-match-success', this.baseTimeout)
+      this.toggleDisplay(this.boardNodejQ, 'unclickable', this.baseTimeout * 2)
       this.incrementPattern()
       this.resetSubCounter()
       setTimeout(() => {
@@ -132,23 +143,26 @@ class SimonGame {
 /* ================================================= */
 $(document).ready(function () {
   /* create instance of SimonGame */
-  let gameInstance = new SimonGame()
-  let newGameNodejQ = $('.button.new-game')
+  let simonInstance = new Simon(1000)
 
   /* set event listener for starting the game:
   // - remove the click even listener previously on .button-new-game
   // - make the 'New Game' button a 'Reset Game' button */
   /* ---------------- */
+  let newGameNodejQ = $('.button.new-game')
   newGameNodejQ.on('click', (e) => {
     newGameNodejQ.off('click')
     newGameNodejQ.attr('data-is-started', 'true')
     newGameNodejQ.text('Reset Game')
-    newGameNodejQ.click((e) => gameInstance.startNewGame())
+    newGameNodejQ.click((e) => simonInstance.startNewGame())
 
-    /* add event listener to `.game-input`s */
-    $('.container.game-inputs').click((eventObject) => gameInstance.getSubInput(eventObject))
+    /* - make .container.game-inputs clickable
+    // - add event listeners to `.game-input`s */
+    /* ---------------- */
+    simonInstance.inputsContainerNodejQ.removeClass('unclickable')
+    $('.game-input').click((eventObject) => simonInstance.getSubInput(eventObject))
 
     /* Begin game */
-    gameInstance.startNewGame()
+    simonInstance.startNewGame()
   })
 })
