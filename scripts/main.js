@@ -7,13 +7,13 @@ class SimonGame {
     this.baseTimeout = 1000
     this.isStrict = false
   }
-  /* Methods */
+  /* METHODS */
   /* ================================================= */
   /* Object Utility Methods */
   /* ------------------------------------------------- */
   toggleDisplay (nodejQ, displayClass, duration) {
-    /* adds a display class to the give node jQuery object,
-    // then removes that class after a duration */
+    /* - adds a display class to the give node jQuery object,
+    // - then removes that class after a duration */
     /* ---------------- */
     nodejQ.toggleClass(displayClass)
     setTimeout(() => nodejQ.toggleClass(displayClass), duration)
@@ -38,8 +38,23 @@ class SimonGame {
     this.subCounter = 0
   }
 
+  resetPattern () {
+    /* sets pattern to the default empty array */
+    /* ---------------- */
+    this.pattern = []
+  }
+
   /* Core Game Methods */
   /* ------------------------------------------------- */
+  startNewGame () {
+    /* pretty straigtfoward: wipe the slate clean and begin the game again */
+    /* ---------------- */
+    this.resetSubCounter()
+    this.resetPattern()
+    this.incrementPattern()
+    this.showPattern()
+  }
+
   showPattern () {
     let patternLength = this.pattern.length
     let totalDuration = (patternLength + 1) * this.baseTimeout
@@ -64,8 +79,9 @@ class SimonGame {
   }
 
   getSubInput (e) {
-    /* event handler for the `.game-input`s
-    // - this method is used to check if a given input matches the pattern whenever the user makes a selection
+    /* event handler for the `.game-input`s:
+    // - gets the attributes of the selected item
+    // -  if a given input matches the pattern whenever the user makes a selection
     /* ---------------- */
     let selected = $(e.target)
     let selectedIndex = parseInt(selected.attr('data-index'))
@@ -77,19 +93,20 @@ class SimonGame {
     /* If the selected index is the same as the index for the respective pattern item:
     // - give visual feedback of a valid selection
     // - increment the subCounter so the checkInputMatch method checks the next value in instance.patterns
-    // - check to see if the given input is the last match in the pattern
-    */
+    // - check to see if the given input is the last match in the pattern */
+    /* ---------------- */
     if (inputIndex === this.pattern[this.subCounter]) {
       this.toggleDisplay(inputNodejQ, 'display-selected', this.baseTimeout / 2)
       this.toggleDisplay(inputNodejQ, 'unclickable', this.baseTimeout)
       this.subCounter++
       this.checkIsFinalInput()
     } else {
-      /* if not a match:
+      /* If not a match:
       // - give visual feedback the there is a failed match
       // - reset the subCounter, so the next invocation of checkInputMatch starts from the beginning of the .pattern array
       // - show the pattern again
       // - might add functionality if 'strict mode' is on */
+      /* ---------------- */
       let inputsContainerNodejQ = $('.container.game-inputs')
       this.toggleDisplay(inputsContainerNodejQ, 'display-match-fail', this.baseTimeout)
       this.resetSubCounter()
@@ -115,18 +132,27 @@ class SimonGame {
   }
 }
 
-/* Global Functions */
-/* ================================================= */
-function startGame () {
-  let gameInstance = new SimonGame()
-
-  $('.game-input').click((eventObject) => gameInstance.getSubInput(eventObject))
-  gameInstance.incrementPattern()
-  gameInstance.showPattern()
-}
-
-/* Adding functionality to th DOM */
+/* GLOBAL FUNCTIONS */
 /* ================================================= */
 $(document).ready(function () {
-  $('.button.start-game').click((e) => startGame())
+  /* create instance of SimonGame */
+  let gameInstance = new SimonGame()
+  let newGameNodejQ = $('.button.new-game')
+
+  /* set event listener for starting the game:
+  // - remove the click even listener previously on .button-new-game
+  // - make the 'New Game' button a 'Reset Game' button */
+  /* ---------------- */
+  newGameNodejQ.on('click', (e) => {
+    newGameNodejQ.off('click')
+    newGameNodejQ.attr('data-is-started', 'true')
+    newGameNodejQ.text('Reset Game')
+    newGameNodejQ.click((e) => gameInstance.startNewGame())
+
+    /* add event listener to `.game-input`s */
+    $('.game-input').click((eventObject) => gameInstance.getSubInput(eventObject))
+
+    /* Begin game */
+    gameInstance.startNewGame()
+  })
 })

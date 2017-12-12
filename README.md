@@ -38,9 +38,7 @@ At one point, I had *five* separate methods that all did effectively the same th
 So, I refactored them.
 
 ## Reach Goals
-- [ ] the start button is bugged. It works the first time, and not any time after that
-  - refactor the startGame global function, make anonymous and adjust for reset
-- [ ] make it so you can't click a button while it is animating
+- [ ] make it so you can't click during animations
   - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
   - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
 - [ ] adding a modal would be cool (http://jquerymodal.com/)
@@ -51,6 +49,8 @@ So, I refactored them.
 - [x] making `toggleDisplaySelected` a method and not a global function
 - [x] consolidating the `toggleDisplay()` methods into one reusable function
 - [x] add method to check if subinput is valid
+- [x] the start button is bugged. It works the first time, and not any time after that
+  - refactor the startGame global function, make anonymous and adjust for reset
 
 ## Sources
 - [Google Logo, used as reference for button colors](https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png)
@@ -66,4 +66,5 @@ So, I refactored them.
 - [get random numbers in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
 - [pass arguments to callback in event listener](https://stackoverflow.com/a/979344)
 - [jQuery select element by attribute, specifically `[data-]`](https://stackoverflow.com/a/29906777)
+- [jQuery `.off()`](https://api.jquery.com/off/)
 
