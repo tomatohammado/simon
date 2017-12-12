@@ -37,6 +37,7 @@ header {
   background-color: rgba(150, 150, 150, .3);
   box-shadow: 0 0 2em #969696;
   pointer-events: none;
+  transform: scale(1.2);
 }
 
 .container.game-inputs.match-success {

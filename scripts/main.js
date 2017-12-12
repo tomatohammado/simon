@@ -39,13 +39,14 @@ class SimonGame {
     // 2) show each element in the pattern */
     /* ---------------- */
     let patternLength = this.pattern.length
-    let totalDuration = patternLength * this.baseTimeout
+    let totalDuration = (patternLength + 1) * this.baseTimeout
 
     this.toggleDisplayPatternContainer(totalDuration)
 
     for (let i = 0; i < patternLength; i++) {
-      let timeout = i * this.baseTimeout
+      let timeout = (i + 1) * this.baseTimeout
       setTimeout(() => {
+        console.log(this.pattern)
         toggleDisplaySelected($(`[data-index="${this.pattern[i]}"]`))
       }, timeout)
     }
