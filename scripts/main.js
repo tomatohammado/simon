@@ -16,7 +16,7 @@ class SimonGame {
     /* NOTE: the lower bound is inclusive, the upper bound is exclusive
     // so if the totalPlayButtons === 4, this will return an integer from 0-3 */
     /* ---------------- */
-    return Math.floor(Math.random() * $('.button.game-input').length)
+    return Math.floor(Math.random() * $('.game-input').length)
   }
 
   incrementPattern () {
@@ -88,7 +88,7 @@ class SimonGame {
   /* ------------------------------------------------- */
   toggleDisplayPatternContainer (duration) {
     let boardTarget = $('.container.game-board')
-    let buttonsTarget = $('.container.game-buttons')
+    let buttonsTarget = $('.container.game-inputs')
 
     boardTarget.toggleClass('unclicakble')
     buttonsTarget.toggleClass('displayPattern')
@@ -99,14 +99,14 @@ class SimonGame {
   }
 
   toggleDisplayMatchFail (duration) {
-    let target = $('.container.game-buttons')
+    let target = $('.container.game-inputs')
 
     target.toggleClass('match-fail')
     setTimeout(() => target.toggleClass('match-fail'), duration)
   }
 
   toggleDisplayMatchSuccess (duration) {
-    let target = $('.container.game-buttons')
+    let target = $('.container.game-inputs')
 
     target.toggleClass('match-success')
     setTimeout(() => target.toggleClass('match-success'), duration)
@@ -118,7 +118,7 @@ class SimonGame {
 function startGame () {
   let gameInstance = new SimonGame()
 
-  $('.button.game-input').click((eventObject) => gameInstance.getSubInput(eventObject))
+  $('.game-input').click((eventObject) => gameInstance.getSubInput(eventObject))
   gameInstance.incrementPattern()
   gameInstance.showPattern()
 }

@@ -25,7 +25,7 @@ header {
   align-items: center;
 }
 
-.container.game-buttons {
+.container.game-inputs {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -33,49 +33,64 @@ header {
   transition: all 1000ms ease;
 }
 
-.container.game-buttons.displayPattern {
+.container.game-inputs.displayPattern {
   background-color: rgba(150, 150, 150, .3);
   box-shadow: 0 0 2em #969696;
   pointer-events: none;
 }
 
-.container.game-buttons.match-success {
+.container.game-inputs.match-success {
   background-color: rgba(0, 255, 0, .3);
   box-shadow: 0 0 2em #0F0;
 }
 
-.container.game-buttons.match-fail {
+.container.game-inputs.match-fail {
   background-color: rgba(255, 0, 0, .3);
   box-shadow: 0 0 2em #F00;
 }
 
-.button.game-input {
+.game-input {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 2px solid #888;
   margin: 10px;
   transition: all 500ms ease;
 }
 
 /* Using colors from Google Logo (since 2015)
 // Selected using color picker via source image https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
-.button.game-input[data-index="0"] {
-  background-color: #FFBC05
+.game-input[data-index="0"] {
+  background-color: #FFBC05;
 }
 
-.button.game-input[data-index="1"] {
+.game-input[data-index="0"].selected {
+  box-shadow: 0 0 1em #FFBC05;
+}
+
+.game-input[data-index="1"] {
   background-color: #5C6DF3;
 }
 
-.button.game-input[data-index="2"] {
+.game-input[data-index="1"].selected {
+  box-shadow: 0 0 1em #5C6DF3;
+}
+
+.game-input[data-index="2"] {
   background-color: #F63232;
 }
 
-.button.game-input[data-index="3"] {
+.game-input[data-index="2"].selected {
+  box-shadow: 0 0 1em #F63232;
+}
+
+.game-input[data-index="3"] {
   background-color: #31AD51;
 }
 
-.button.game-input.selected {
+.game-input[data-index="3"].selected {
+  box-shadow: 0 0 1em #31AD51;
+}
+
+.game-input.selected {
   transform: scale(1.2);
 }
