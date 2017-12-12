@@ -45,20 +45,19 @@ class SimonGame {
     for (let i = 0; i < patternLength; i++) {
       let timeout = (i + 1) * this.baseTimeout
       setTimeout(() => {
-        console.log(this.pattern)
-        toggleDisplaySelected($(`[data-index="${this.pattern[i]}"]`))
+        this.toggleDisplaySelected($(`[data-index="${this.pattern[i]}"]`))
       }, timeout)
     }
   }
 
   getSubInput (e) {
-    /* event handler for the .game-input's */
+    /* event handler for the `.game-input`s */
     /* ---------------- */
     let selected = $(e.target)
     let selectedIndex = parseInt(selected.attr('data-index'))
 
     if (selectedIndex === this.pattern[this.subCounter]) {
-      toggleDisplaySelected(selected)
+      this.toggleDisplaySelected(selected)
       this.subCounter++
       this.checkFinalSubInput()
     } else {
@@ -69,10 +68,7 @@ class SimonGame {
       setTimeout(() => {
         this.showPattern()
       }, this.baseTimeout * 2)
-      // return
     }
-
-    // this.checkFinalSubInput()
   }
 
   checkFinalSubInput () {
@@ -93,6 +89,14 @@ class SimonGame {
 
   /* Display State Methods */
   /* ------------------------------------------------- */
+  toggleDisplaySelected (selectedInput) {
+    /* it will add, then remove, a .selected class to indicate a button has been pressed */
+    /* ---------------- */
+    selectedInput.toggleClass('selected unclickable')
+    setTimeout(() => selectedInput.toggleClass('selected'), this.baseTimeout / 2)
+    setTimeout(() => selectedInput.toggleClass('unclickable'), this.baseTimeout)
+  }
+
   toggleDisplayPatternContainer (duration) {
     let boardTarget = $('.container.game-board')
     let buttonsTarget = $('.container.game-inputs')
@@ -128,14 +132,6 @@ function startGame () {
   $('.game-input').click((eventObject) => gameInstance.getSubInput(eventObject))
   gameInstance.incrementPattern()
   gameInstance.showPattern()
-}
-
-function toggleDisplaySelected (selectedInput) {
-  /* it will add, then remove, a .selected class to indicate a button has been pressed */
-  /* ---------------- */
-  selectedInput.toggleClass('selected unclickable')
-  setTimeout(() => selectedInput.toggleClass('selected'), 500)
-  setTimeout(() => selectedInput.toggleClass('unclickable'), 1000)
 }
 
 /* Adding functionality to th DOM */
