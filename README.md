@@ -48,10 +48,8 @@ So, I refactored them.
 
 ## Completed Goals
 ~~- I have to do something reaaaaally hacky to get the playPattern() function to work~~
-
-    ~~- because all of the functions run at the same time, I have to set increment a timeout variable based on the current index~~
-
-    ~~- is there a better way to get a function to run on each element in an array sequentially?~~
+~~----- because all of the functions run at the same time, I have to set increment a timeout variable based on the current index~~
+~~----- is there a better way to get a function to run on each element in an array sequentially?~~
 
 ~~- making `toggleDisplaySelected` a method and not a global function~~
 
