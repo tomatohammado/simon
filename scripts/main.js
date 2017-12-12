@@ -3,110 +3,136 @@ const $ = window.jQuery
 class SimonGame {
   constructor () {
     this.pattern = []
-    this.totalPlayButtons = 0
-    this.playIteration = 0
+    this.subCounter = 0
+    this.baseTimeout = 1000
     this.isStrict = false
   }
-  /* Object Methods */
-  getRandomIndex () {
+
+  /* Methods */
+  /* ================================================= */
+  /* Object Utility Methods */
+  /* ------------------------------------------------- */
+  getRandomPatternIndex () {
     /* NOTE: the lower bound is inclusive, the upper bound is exclusive
     // so if the totalPlayButtons === 4, this will return an integer from 0-3 */
-    return Math.floor(Math.random() * this.totalPlayButtons)
+    /* ---------------- */
+    return Math.floor(Math.random() * $('.button.game-input').length)
   }
 
-  iteratePattern () {
-    /* Adds a random index to the objects .pattern property */
-    this.pattern.push(this.getRandomIndex())
+  incrementPattern () {
+    /* Adds a random index to the object's .pattern array property */
+    /* ---------------- */
+    this.pattern.push(this.getRandomPatternIndex())
   }
 
-  resetPlayIteration () {
-    /* sets playIteration to 0 */
-    this.playIteration = 0
+  resetSubCounter () {
+    /* sets subCounter to 0 */
+    /* ---------------- */
+    this.subCounter = 0
   }
 
-  displayPattern () {
-    /* This has two major parts that occur concurently... */
-    let self = this
-    let baseTimeout = 1000
+  /* Core Game Methods */
+  /* ------------------------------------------------- */
+  showPattern () {
+    /* This has two major functions that occur concurently..
+    // 1) add classes to the game containers, to highlight the 'pattern' phase and make the board unclickable while showing pattern
+    // 2) show each element in the pattern */
+    /* ---------------- */
     let patternLength = this.pattern.length
-    let totalDuration = patternLength * baseTimeout
-    /* 1) add styles to the containers and make them unclickable while animating */
-    this.toggleDisplayPattern()
-    setTimeout((this.toggleDisplayPattern).bind(self), totalDuration)
-    /* 2) display each item in the pattern array */
+    let totalDuration = patternLength * this.baseTimeout
+
+    this.toggleDisplayPatternContainer(totalDuration)
+
     for (let i = 0; i < patternLength; i++) {
-      let timeout = i * baseTimeout
+      let timeout = i * this.baseTimeout
       setTimeout(() => {
-        selectButtonStyle($(`[data-index="${this.pattern[i]}"]`))
+        toggleDisplaySelected($(`[data-index="${this.pattern[i]}"]`))
       }, timeout)
     }
   }
 
-  getPlayInput (e) {
-    /* event handler for the .play-button's */
-    let target = $(e.target)
-    let targetIndex = parseInt(target.attr('data-index'))
+  getSubInput (e) {
+    /* event handler for the .game-input's */
+    /* ---------------- */
+    let selected = $(e.target)
+    let selectedIndex = parseInt(selected.attr('data-index'))
 
-    if (targetIndex === this.pattern[this.playIteration]) {
-      selectButtonStyle(target)
-      this.playIteration++
+    if (selectedIndex === this.pattern[this.subCounter]) {
+      toggleDisplaySelected(selected)
+      this.subCounter++
     } else {
       let self = this
-      this.toggleMatchFail()
-      setTimeout(() => self.toggleMatchFail(), 1000)
-      this.resetPlayIteration()
-      setTimeout(this.displayPattern.bind(self), 2000)
+      this.toggleDisplayMatchFail(this.baseTimeout)
+      this.resetSubCounter()
+      setTimeout(this.showPattern.bind(self), this.baseTimeout * 2)
       return
     }
 
-    this.checkInputFinal()
+    this.checkFinalSubInput()
   }
 
-  checkInputFinal () {
+  checkFinalSubInput () {
     /* Determines if the current match is the final match in the pattern
-    // will only run after a successful match */
-    if (this.playIteration === this.pattern.length) {
+    // will only run after a successful subinput match */
+    /* ---------------- */
+    if (this.subCounter === this.pattern.length) {
       let self = this
-      this.toggleMatchSuccess()
-      setTimeout(() => self.toggleMatchSuccess(), 1000)
-      this.iteratePattern()
-      this.resetPlayIteration()
-      setTimeout(this.displayPattern.bind(self), 2000)
+      this.toggleDisplayMatchSuccess(this.baseTimeout)
+      this.incrementPattern()
+      this.resetSubCounter()
+      setTimeout(this.showPattern.bind(self), this.baseTimeout * 2)
     }
   }
 
-  /* These Methods are used to toggle styles for different dislay states */
-  toggleDisplayPattern () {
-    $('.container.game-board').toggleClass('unclicakble')
-    $('.container.play-game-buttons').toggleClass('isPlaying')
+  /* Display State Methods */
+  /* ------------------------------------------------- */
+  toggleDisplayPatternContainer (duration) {
+    let boardTarget = $('.container.game-board')
+    let buttonsTarget = $('.container.game-buttons')
+
+    boardTarget.toggleClass('unclicakble')
+    buttonsTarget.toggleClass('displayPattern')
+    setTimeout(() => {
+      boardTarget.toggleClass('unclicakble')
+      buttonsTarget.toggleClass('displayPattern')
+    }, duration)
   }
 
-  toggleMatchFail () {
-    $('.container.play-game-buttons').toggleClass('match-fail')
+  toggleDisplayMatchFail (duration) {
+    let target = $('.container.game-buttons')
+
+    target.toggleClass('match-fail')
+    setTimeout(() => target.toggleClass('match-fail'), duration)
   }
 
-  toggleMatchSuccess () {
-    $('.container.play-game-buttons').toggleClass('match-success')
+  toggleDisplayMatchSuccess (duration) {
+    let target = $('.container.game-buttons')
+
+    target.toggleClass('match-success')
+    setTimeout(() => target.toggleClass('match-success'), duration)
   }
 }
 
+/* Global Functions */
+/* ================================================= */
+function startGame () {
+  let gameInstance = new SimonGame()
+
+  $('.button.game-input').click((eventObject) => gameInstance.getSubInput(eventObject))
+  gameInstance.incrementPattern()
+  gameInstance.showPattern()
+}
+
+function toggleDisplaySelected (selectedInput) {
+  /* it will add, then remove, a .selected class to indicate a button has been pressed */
+  /* ---------------- */
+  selectedInput.toggleClass('selected unclickable')
+  setTimeout(() => selectedInput.toggleClass('selected'), 500)
+  setTimeout(() => selectedInput.toggleClass('unclickable'), 1000)
+}
+
+/* Adding functionality to th DOM */
+/* ================================================= */
 $(document).ready(function () {
   $('.button.start-game').click((e) => startGame())
 })
-
-/* Functions */
-function startGame () {
-  let gameInstance = new SimonGame()
-  gameInstance.totalPlayButtons = $('.button.play-game').length
-
-  $('.button.play-game').click((eventObject) => gameInstance.getPlayInput(eventObject))
-  gameInstance.iteratePattern()
-  gameInstance.displayPattern()
-}
-
-function selectButtonStyle (targetElement) {
-  /* it will add, then remove, a .selected class to indicate a button has been pressed */
-  targetElement.toggleClass('selected unclickable')
-  setTimeout(() => targetElement.toggleClass('selected'), 500)
-  setTimeout(() => targetElement.toggleClass('unclickable'), 1000)
-}
