@@ -26,3 +26,5 @@ WDI Project 1
   - the start button is bugged. It works the first time, and not any time after that
     - so, I should work on the reset-buttons
   - adding a modal would be cool (http://jquerymodal.com/)
+  - consolidating the `toggleDisplay*()` methods into one reusable function
+  - making toggleDisplaySelected a method and not a global function
