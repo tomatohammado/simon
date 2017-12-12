@@ -38,19 +38,19 @@ At one point, I had *five* separate methods that all did effectively the same th
 So, I refactored them.
 
 ## Reach Goals
-[] the start button is bugged. It works the first time, and not any time after that
-   - refactor the startGame global function, make anonymous and adjust for reset
-[] make it so you can't click a button while it is animating
-   - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
-   - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
-[] adding a modal would be cool (http://jquerymodal.com/)
+- [] the start button is bugged. It works the first time, and not any time after that
+     - refactor the startGame global function, make anonymous and adjust for reset
+- [] make it so you can't click a button while it is animating
+     - I think I am better off using the `animate` property vs `transition`, but it's not important for the MVP so I'll save it for later
+     - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
+- [] adding a modal would be cool (http://jquerymodal.com/)
 
-[x] I have to do something reaaaaally hacky to get the playPattern() function to work  
-    - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index
-    - is there a better way to get a function to run on each element in an array sequentially?
-[x] making `toggleDisplaySelected` a method and not a global function
-[x] consolidating the `toggleDisplay()` methods into one reusable function
-[x] add method to check if subinput is valid
+- [x] I have to do something reaaaaally hacky to get the playPattern() function to work
+      - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index
+      - is there a better way to get a function to run on each element in an array sequentially?
+- [x] making `toggleDisplaySelected` a method and not a global function
+- [x] consolidating the `toggleDisplay()` methods into one reusable function
+- [x] add method to check if subinput is valid
 
 ## Sources
 - [Google Logo, used as reference for button colors](https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png)
