@@ -1,6 +1,42 @@
 # simon
 WDI Project 1
 
+## Things I Learned
+- The `this` keyword behaves a differently depending on the context in which it is used.
+
+One example is within callback functions. `this` often refers to the global `Window` object, which is not what I want let me tell you.
+
+So you can use Function methods like `.bind()` (`.call()` and `.apply()` are also options, but they all are used for different purposes and use cases).
+
+Take this code for example:
+```js
+somePropertyMethod () {
+  let self = this
+  setTimeout(this.showPattern.bind(self), this.baseTimeout)
+}
+```
+
+This works great! Now, passing the `this.showPattern` method in the setTimeout higher order function will use the reference `self`, refering to the object instance the method is being invoked under, for the `this` in `.showPattern()`
+
+Yet, this _also_ works:
+```js
+somePropertyMethod () {
+  setTimeout(() => {
+    this.showPattern()
+  }, this.baseTimeout)
+```
+
+This surprised me. Using the arrow function expression, the `this` in the nested function still refers to the object instance.
+
+Note, there are some gotchas with this. [This is a good resource showing when `this` isn't what you'd expect with arrow function expressions](https://derickbailey.com/2015/09/28/do-es6-arrow-functions-really-solve-this-in-javascript/)
+
+---
+Refactoring `toggleDisplay` methods
+
+At one point, I had *five* separate methods that all did effectively the same thing.
+
+So, I refactored them.
+
 ## Sources
 - [Google Logo, used as reference for button colors](https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png)
 - [css attribute selectors](https://www.w3schools.com/css/css_attribute_selectors.asp)
