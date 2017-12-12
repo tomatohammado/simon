@@ -47,11 +47,11 @@ So, I refactored them.
 4. adding a modal would be cool (http://jquerymodal.com/)
 
 ## Completed Goals
-~~- I have to do something reaaaaally hacky to get the playPattern() function to work
+~~- I have to do something reaaaaally hacky to get the playPattern() function to work~~
 
-    - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index
+    ~~- because all of the functions run at the same time, I have to set increment a timeout variable based on the current index~~
 
-    - is there a better way to get a function to run on each element in an array sequentially?~~
+    ~~- is there a better way to get a function to run on each element in an array sequentially?~~
 
 ~~- making `toggleDisplaySelected` a method and not a global function~~
 
