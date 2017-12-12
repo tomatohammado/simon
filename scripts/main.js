@@ -39,13 +39,20 @@ class SimonGame {
     /* ---------------- */
     let patternLength = this.pattern.length
     let totalDuration = (patternLength + 1) * this.baseTimeout
+    let boardNodejQ = $('.container.game-board')
+    let inputsNodejQ = $('.container.game-inputs')
 
-    this.toggleDisplayPatternContainer(totalDuration)
+    // this.toggleDisplayPatternContainer(totalDuration)
+    this.toggleDisplay(boardNodejQ, 'unclickable', totalDuration)
+    this.toggleDisplay(inputsNodejQ, 'display-pattern', totalDuration)
 
     for (let i = 0; i < patternLength; i++) {
       let timeout = (i + 1) * this.baseTimeout
+      let patternItemNodejQ = $(`[data-index="${this.pattern[i]}"]`)
       setTimeout(() => {
-        this.toggleDisplaySelected($(`[data-index="${this.pattern[i]}"]`))
+        // this.toggleDisplaySelected($(`[data-index="${this.pattern[i]}"]`))
+        this.toggleDisplay(patternItemNodejQ, 'display-selected', this.baseTimeout / 2)
+        this.toggleDisplay(patternItemNodejQ, 'unclickable', this.baseTimeout)
       }, timeout)
     }
   }
@@ -57,14 +64,16 @@ class SimonGame {
     let selectedIndex = parseInt(selected.attr('data-index'))
 
     if (selectedIndex === this.pattern[this.subCounter]) {
-      this.toggleDisplaySelected(selected)
+      // this.toggleDisplaySelected(selected)
+      this.toggleDisplay(selected, 'display-selected', this.baseTimeout / 2)
+      this.toggleDisplay(selected, 'unclickable', this.baseTimeout)
       this.subCounter++
       this.checkFinalSubInput()
     } else {
-      this.toggleDisplayMatchFail(this.baseTimeout)
+      // this.toggleDisplayMatchFail(this.baseTimeout)
+      let inputsNodejQ = $('.container.game-inputs')
+      this.toggleDisplay(inputsNodejQ, 'display-match-fail', this.baseTimeout)
       this.resetSubCounter()
-      // let self = this
-      // setTimeout(this.showPattern.bind(self), this.baseTimeout * 2)
       setTimeout(() => {
         this.showPattern()
       }, this.baseTimeout * 2)
@@ -76,11 +85,11 @@ class SimonGame {
     // this is only called after a successful subinput match */
     /* ---------------- */
     if (this.subCounter === this.pattern.length) {
-      this.toggleDisplayMatchSuccess(this.baseTimeout)
+      // this.toggleDisplayMatchSuccess(this.baseTimeout)
+      let inputsNodejQ = $('.container.game-inputs')
+      this.toggleDisplay(inputsNodejQ, 'display-match-success', this.baseTimeout)
       this.incrementPattern()
       this.resetSubCounter()
-      // let self = this
-      // setTimeout(this.showPattern.bind(self), this.baseTimeout * 2)
       setTimeout(() => {
         this.showPattern()
       }, this.baseTimeout * 2)
@@ -89,39 +98,44 @@ class SimonGame {
 
   /* Display State Methods */
   /* ------------------------------------------------- */
-  toggleDisplaySelected (selectedInput) {
-    /* it will add, then remove, a .selected class to indicate a button has been pressed */
-    /* ---------------- */
-    selectedInput.toggleClass('selected unclickable')
-    setTimeout(() => selectedInput.toggleClass('selected'), this.baseTimeout / 2)
-    setTimeout(() => selectedInput.toggleClass('unclickable'), this.baseTimeout)
+
+  toggleDisplay (nodejQ, displayClass, duration) {
+    nodejQ.toggleClass(displayClass)
+    setTimeout(() => nodejQ.toggleClass(displayClass), duration)
   }
+  // toggleDisplaySelected (selectedInput) {
+  //   /* it will add, then remove, a .selected class to indicate a button has been pressed */
+  //   /* ---------------- */
+  //   selectedInput.toggleClass('selected unclickable')
+  //   setTimeout(() => selectedInput.toggleClass('selected'), this.baseTimeout / 2)
+  //   setTimeout(() => selectedInput.toggleClass('unclickable'), this.baseTimeout)
+  // }
 
-  toggleDisplayPatternContainer (duration) {
-    let boardTarget = $('.container.game-board')
-    let buttonsTarget = $('.container.game-inputs')
+  // toggleDisplayPatternContainer (duration) {
+  //   let boardTarget = $('.container.game-board')
+  //   let buttonsTarget = $('.container.game-inputs')
 
-    boardTarget.toggleClass('unclicakble')
-    buttonsTarget.toggleClass('displayPattern')
-    setTimeout(() => {
-      boardTarget.toggleClass('unclicakble')
-      buttonsTarget.toggleClass('displayPattern')
-    }, duration)
-  }
+  //   boardTarget.toggleClass('unclicakble')
+  //   buttonsTarget.toggleClass('displayPattern')
+  //   setTimeout(() => {
+  //     boardTarget.toggleClass('unclicakble')
+  //     buttonsTarget.toggleClass('displayPattern')
+  //   }, duration)
+  // }
 
-  toggleDisplayMatchFail (duration) {
-    let target = $('.container.game-inputs')
+  // toggleDisplayMatchFail (duration) {
+  //   let target = $('.container.game-inputs')
 
-    target.toggleClass('match-fail')
-    setTimeout(() => target.toggleClass('match-fail'), duration)
-  }
+  //   target.toggleClass('match-fail')
+  //   setTimeout(() => target.toggleClass('match-fail'), duration)
+  // }
 
-  toggleDisplayMatchSuccess (duration) {
-    let target = $('.container.game-inputs')
+  // toggleDisplayMatchSuccess (duration) {
+  //   let target = $('.container.game-inputs')
 
-    target.toggleClass('match-success')
-    setTimeout(() => target.toggleClass('match-success'), duration)
-  }
+  //   target.toggleClass('match-success')
+  //   setTimeout(() => target.toggleClass('match-success'), duration)
+  // }
 }
 
 /* Global Functions */
