@@ -7,7 +7,6 @@ class SimonGame {
     this.baseTimeout = 1000
     this.isStrict = false
   }
-
   /* Methods */
   /* ================================================= */
   /* Object Utility Methods */
@@ -61,27 +60,34 @@ class SimonGame {
     if (selectedIndex === this.pattern[this.subCounter]) {
       toggleDisplaySelected(selected)
       this.subCounter++
+      this.checkFinalSubInput()
     } else {
-      let self = this
       this.toggleDisplayMatchFail(this.baseTimeout)
       this.resetSubCounter()
-      setTimeout(this.showPattern.bind(self), this.baseTimeout * 2)
-      return
+      // let self = this
+      // setTimeout(this.showPattern.bind(self), this.baseTimeout * 2)
+      setTimeout(() => {
+        this.showPattern()
+      }, this.baseTimeout * 2)
+      // return
     }
 
-    this.checkFinalSubInput()
+    // this.checkFinalSubInput()
   }
 
   checkFinalSubInput () {
     /* Determines if the current match is the final match in the pattern
-    // will only run after a successful subinput match */
+    // this is only called after a successful subinput match */
     /* ---------------- */
     if (this.subCounter === this.pattern.length) {
-      let self = this
       this.toggleDisplayMatchSuccess(this.baseTimeout)
       this.incrementPattern()
       this.resetSubCounter()
-      setTimeout(this.showPattern.bind(self), this.baseTimeout * 2)
+      // let self = this
+      // setTimeout(this.showPattern.bind(self), this.baseTimeout * 2)
+      setTimeout(() => {
+        this.showPattern()
+      }, this.baseTimeout * 2)
     }
   }
 

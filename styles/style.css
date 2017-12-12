@@ -58,40 +58,64 @@ header {
   transition: all 500ms ease;
 }
 
+.game-input.selected {
+  transform: scale(1.2);
+}
+
 /* Using colors from Google Logo (since 2015)
 // Selected using color picker via source image https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
 .game-input[data-index="0"] {
   background-color: #FFBC05;
+  /* background-color: rgb(255, 188, 5); */
+}
+
+.game-input[data-index="0"]:hover {
+  box-shadow: 0 0 1em #FFBC05;
 }
 
 .game-input[data-index="0"].selected {
-  box-shadow: 0 0 1em #FFBC05;
+  /* background-color: #FFBC05; */
+  box-shadow: 0 0 1.5em #FFBC05;
 }
 
 .game-input[data-index="1"] {
   background-color: #5C6DF3;
+  /* background-color: rgb(92, 109, 243); */
+}
+
+.game-input[data-index="1"]:hover {
+  box-shadow: 0 0 1em #5C6DF3;
 }
 
 .game-input[data-index="1"].selected {
-  box-shadow: 0 0 1em #5C6DF3;
+  /* background-color: #5C6DF3; */
+  box-shadow: 0 0 1.5em #5C6DF3;
 }
 
 .game-input[data-index="2"] {
   background-color: #F63232;
+  /* background-color: rgb(246, 50, 50) */
+}
+
+.game-input[data-index="2"]:hover {
+  box-shadow: 0 0 1em #F63232;
 }
 
 .game-input[data-index="2"].selected {
-  box-shadow: 0 0 1em #F63232;
+  /* background-color: #F63232; */
+  box-shadow: 0 0 1.5em #F63232;
 }
 
 .game-input[data-index="3"] {
   background-color: #31AD51;
+  /* background-color: rgb(49, 173, 81) */
 }
 
-.game-input[data-index="3"].selected {
+.game-input[data-index="3"]:hover {
   box-shadow: 0 0 1em #31AD51;
 }
 
-.game-input.selected {
-  transform: scale(1.2);
+.game-input[data-index="3"].selected {
+  /* background-color: #31AD51; */
+  box-shadow: 0 0 1.5em #31AD51;
 }
