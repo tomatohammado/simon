@@ -48,11 +48,11 @@ class SimonGame {
     let patternLength = this.pattern.length
     let totalDuration = (patternLength + 1) * this.baseTimeout
     let boardNodejQ = $('.container.game-board')
-    let inputsNodejQ = $('.container.game-inputs')
+    let inputsContainerNodejQ = $('.container.game-inputs')
 
     /* Part 1 */
     this.toggleDisplay(boardNodejQ, 'unclickable', totalDuration)
-    this.toggleDisplay(inputsNodejQ, 'display-pattern', totalDuration)
+    this.toggleDisplay(inputsContainerNodejQ, 'display-pattern', totalDuration)
 
     /* Part 2 */
     for (let i = 0; i < patternLength; i++) {
@@ -66,19 +66,48 @@ class SimonGame {
   }
 
   getSubInput (e) {
-    /* event handler for the `.game-input`s */
+    /* event handler for the `.game-input`s
+    // in short, it gets the node jquery object of the selected button and its corresponding index
+    // then, it checks to see if it is a match with the .checkInputMatch() method */
     /* ---------------- */
     let selected = $(e.target)
     let selectedIndex = parseInt(selected.attr('data-index'))
 
-    if (selectedIndex === this.pattern[this.subCounter]) {
-      this.toggleDisplay(selected, 'display-selected', this.baseTimeout / 2)
-      this.toggleDisplay(selected, 'unclickable', this.baseTimeout)
+    this.checkInputMatch(selected, selectedIndex)
+    // if (selectedIndex === this.pattern[this.subCounter]) {
+    //   this.toggleDisplay(selected, 'display-selected', this.baseTimeout / 2)
+    //   this.toggleDisplay(selected, 'unclickable', this.baseTimeout)
+    //   this.subCounter++
+    //   this.checkFinalSubInput()
+    // } else {
+    //   let inputsNodejQ = $('.container.game-inputs')
+    //   this.toggleDisplay(inputsNodejQ, 'display-match-fail', this.baseTimeout)
+    //   this.resetSubCounter()
+    //   setTimeout(() => {
+    //     this.showPattern()
+    //   }, this.baseTimeout * 2)
+    // }
+  }
+
+  checkInputMatch (inputNodejQ, inputIndex) {
+    /* If the selected index is the same as the index for the respective pattern item:
+    // - give visual feedback of a valid selection
+    // - increment the subCounter so the checkInputMatch method checks the next value in instance.patterns
+    // - check to see if the given input is the last match in the pattern
+    */
+    if (inputIndex === this.pattern[this.subCounter]) {
+      this.toggleDisplay(inputNodejQ, 'display-selected', this.baseTimeout / 2)
+      this.toggleDisplay(inputNodejQ, 'unclickable', this.baseTimeout)
       this.subCounter++
-      this.checkFinalSubInput()
+      this.checkIsFinalInput()
     } else {
-      let inputsNodejQ = $('.container.game-inputs')
-      this.toggleDisplay(inputsNodejQ, 'display-match-fail', this.baseTimeout)
+      /* if not a match:
+      // - give visual feedback the there is a failed match
+      // - reset the subCounter, so the next invocation of checkInputMatch starts from the beginning of the .pattern array
+      // - show the pattern again
+      // - might add functionality if 'strict mode' is on */
+      let inputsContainerNodejQ = $('.container.game-inputs')
+      this.toggleDisplay(inputsContainerNodejQ, 'display-match-fail', this.baseTimeout)
       this.resetSubCounter()
       setTimeout(() => {
         this.showPattern()
@@ -86,13 +115,13 @@ class SimonGame {
     }
   }
 
-  checkFinalSubInput () {
+  checkIsFinalInput () {
     /* Determines if the current match is the final match in the pattern
-    // this is only called after a successful subinput match */
+    // this is only called after a successful sub-input match */
     /* ---------------- */
     if (this.subCounter === this.pattern.length) {
-      let inputsNodejQ = $('.container.game-inputs')
-      this.toggleDisplay(inputsNodejQ, 'display-match-success', this.baseTimeout)
+      let inputsContainerNodejQ = $('.container.game-inputs')
+      this.toggleDisplay(inputsContainerNodejQ, 'display-match-success', this.baseTimeout)
       this.incrementPattern()
       this.resetSubCounter()
       setTimeout(() => {
