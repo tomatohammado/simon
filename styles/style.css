@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee|Roboto:400,500');
+
 * {
   box-sizing: border-box;
 }
@@ -6,16 +8,39 @@
   pointer-events: none;
 }
 
-header {
-  text-align: center;
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #EEE;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background texture via https://www.transparenttextures.com/ */
+  background-image: url('../assets/graphy-dark.png');
+  background-color: #222;
 }
 
-.button.new-game {
-  display: inline-block;
-  padding: 10px 15px;
-  margin: 10px;
-  border: 1px solid #444;
-  border-radius: 5px;
+header {
+  font-family: 'Bungee', cursive;
+  text-align: center;
+  color: #000;
+  /* text-shadow patter via https://stackoverflow.com/a/34595679 */
+  text-shadow: 2px 2px 0px #fff, 
+              -2px -2px 0px #fff, 
+               2px -2px 0px #fff, 
+              -2px 2px 0px  #fff;
+}
+
+header h1 {
+  margin-bottom: 12.5px;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .container.game-board {
@@ -23,6 +48,11 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 400px;
+  min-height: 200px;
+  background-color: rgba(100, 100, 100, .1);
+  border-radius: 10px;
+  transition: all 1000ms ease;
 }
 
 .container.game-inputs {
@@ -31,30 +61,32 @@ header {
   justify-content: center;
   border-radius: 25px;
   transition: all 1000ms ease;
+  background-color: rgba(255, 255, 255, .25);
 }
 
 .container.game-inputs.display-pattern {
-  background-color: rgba(150, 150, 150, .3);
-  box-shadow: 0 0 2em #969696;
+  box-shadow: 0 0 2em #CCC;
   transform: scale(1.2);
 }
 
-.container.game-inputs.display-match-success {
-  background-color: rgba(0, 255, 0, .3);
+.container.game-board.display-match-success {
+  background-color: rgba(0, 255, 0, .1);
   box-shadow: 0 0 2em #0F0;
 }
 
-.container.game-inputs.display-match-fail {
-  background-color: rgba(255, 0, 0, .3);
+
+.container.game-board.display-match-fail {
+  background-color: rgba(255, 0, 0, .1);
   box-shadow: 0 0 2em #F00;
 }
 
 .game-input {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
   margin: 10px;
   transition-duration: 500ms;
+  border: 1px solid #888;
+  border-radius: 50%;
 }
 
 .game-input.display-selected {
@@ -62,11 +94,9 @@ header {
   transform: scale(1.2);
 }
 
-/* Using colors from Google Logo (since 2015)
-// Selected using color picker via source image https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
+/* Using colors from Google Logo https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
 .game-input[data-index="0"] {
   background-color: #FFBC05;
-  /* background-color: rgb(255, 188, 5); */
 }
 
 .game-input[data-index="0"]:hover {
@@ -74,13 +104,12 @@ header {
 }
 
 .game-input[data-index="0"].display-selected {
-  /* background-color: #FFBC05; */
+  border-color: #FFBC05;
   box-shadow: 0 0 1.5em #FFBC05;
 }
 
 .game-input[data-index="1"] {
   background-color: #5C6DF3;
-  /* background-color: rgb(92, 109, 243); */
 }
 
 .game-input[data-index="1"]:hover {
@@ -88,13 +117,12 @@ header {
 }
 
 .game-input[data-index="1"].display-selected {
-  /* background-color: #5C6DF3; */
+  border-color: #5C6DF3;
   box-shadow: 0 0 1.5em #5C6DF3;
 }
 
 .game-input[data-index="2"] {
   background-color: #F63232;
-  /* background-color: rgb(246, 50, 50) */
 }
 
 .game-input[data-index="2"]:hover {
@@ -102,13 +130,12 @@ header {
 }
 
 .game-input[data-index="2"].display-selected {
-  /* background-color: #F63232; */
+  border-color: #F63232;
   box-shadow: 0 0 1.5em #F63232;
 }
 
 .game-input[data-index="3"] {
   background-color: #31AD51;
-  /* background-color: rgb(49, 173, 81) */
 }
 
 .game-input[data-index="3"]:hover {
@@ -116,6 +143,27 @@ header {
 }
 
 .game-input[data-index="3"].display-selected {
-  /* background-color: #31AD51; */
+  border-color: #31AD51;
   box-shadow: 0 0 1.5em #31AD51;
+}
+
+.container.game-controls {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button.new-game {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #222;
+  transition: all 250ms ease-in-out;
+}
+
+.unclickable .button.new-game {
+  opacity: .3;
 }

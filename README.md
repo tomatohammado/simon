@@ -86,4 +86,6 @@ this.toggleDisplay(inputsContainerNodejQ, 'display-pattern', totalDuration)
 - [pass arguments to callback in event listener](https://stackoverflow.com/a/979344)
 - [jQuery select element by attribute, specifically `[data-]`](https://stackoverflow.com/a/29906777)
 - [jQuery `.off()`](https://api.jquery.com/off/)
+- (make text-shadow go around letters on all sides)[https://stackoverflow.com/a/34595679]
+- (background textures)[https://www.transparenttextures.com/]
 

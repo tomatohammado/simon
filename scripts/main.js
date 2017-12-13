@@ -46,13 +46,13 @@ class Simon extends Game {
   }
 
   resetSubCounter () {
-    /* sets subCounter to 0 */
+    /* resets subCounter to default 0 */
     /* ---------------- */
     this.subCounter = 0
   }
 
   resetPattern () {
-    /* sets pattern to the default empty array */
+    /* resets pattern to default empty array */
     /* ---------------- */
     this.pattern = []
   }
@@ -114,7 +114,7 @@ class Simon extends Game {
       // - reset the subCounter, so the next invocation of checkInputMatch starts from the beginning of the .pattern array
       // - show the pattern again
       /* ---------------- */
-      this.toggleDisplay(this.inputsContainerNodejQ, 'display-match-fail', this.baseTimeout)
+      this.toggleDisplay(this.boardNodejQ, 'display-match-fail', this.baseTimeout)
       this.toggleDisplay(this.boardNodejQ, 'unclickable', this.baseTimeout * 2)
       this.resetSubCounter()
       setTimeout(() => {
@@ -128,7 +128,7 @@ class Simon extends Game {
     /* Determines if the current match is the final match in the pattern
     /* ---------------- */
     if (this.subCounter === this.pattern.length) {
-      this.toggleDisplay(this.inputsContainerNodejQ, 'display-match-success', this.baseTimeout)
+      this.toggleDisplay(this.boardNodejQ, 'display-match-success', this.baseTimeout)
       this.toggleDisplay(this.boardNodejQ, 'unclickable', this.baseTimeout * 2)
       this.incrementPattern()
       this.resetSubCounter()
