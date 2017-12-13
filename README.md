@@ -48,28 +48,52 @@ At one point, I had *five* separate methods that all did effectively the same th
 
 So, I refactored them into one `.toggleDisplay` method
 
-(talk about why I don't make more versions when I have to call toggleDisplay twice ie line 66 in `.showPattern`)
+```js
+this.toggleDisplay(this.boardNodejQ, 'display-match-fail', this.baseTimeout)
+this.toggleDisplay(this.boardNodejQ, 'unclickable', this.baseTimeout * 2)
+```
+
+This is very similar to the `toggleDisplay` code I have for `match-success`
+
+So, conceivably I could make _another_ class, like this:
 
 ```js
-this.toggleDisplay(boardNodejQ, 'unclickable', totalDuration)
-this.toggleDisplay(inputsContainerNodejQ, 'display-pattern', totalDuration)
+toggleDisplayMatch (displayMatchClass) {
+  this.toggleDisplay(this.boardNodejQ, displayMatchClass, this.baseTimeout)
+  this.toggleDisplay(this.boardNodejQ, displayMatchClass, this.baseTimeout * 2)
+}
 ```
+
+With that, I can save myself from having to call `toggleDisplay` whenever I want to toggle the `display-match-success` or `display-match-fail`
+
+However, I just typed 4 lines of code to save having to type two extra lines.
+
+You could also argue `toggleDisplayMatch` isn't any more semantic or clear than the general `toggleDisplay` method, if anything I could easier repeat my initial scenario where I have many similar methods behave similarly.
+
+If something goes wrong in one, it could be difficult to figure out which one. With only the single `toggleDisplay` method, once I know it works it will work for any arguements I invoke it with. If there is a problem, I can just check the arguments.
+
+So, this was a good thought exercise for me about when to use another function vs when to refactor it into something more elegant.
+
+Now, I still believe the `checkInputMatch` and `checkIsFinalInput` methods are valuable. Even though I call those methods in series, one after the other, breaking out the logic of each step makes it easier for me to abstract what function I am performing at each step.
+
+When I had all of the logic nested in one function, it worked just fine, but it was much harder to follow. Each method accomplishes one major task, which is much easier to keep track of.
+
+## Bonus Goals
+- [ ] SASS. SASS first and foremost
+- [ ] adding a modal would be cool (http://jquerymodal.com/)
 
 ## MVP Goals
 - [x] I have to do something reaaaaally hacky to get the playPattern() function to work
   - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index. Is there a better way?
 - [x] making `toggleDisplaySelected` a method and not a global function
 - [x] consolidating the `toggleDisplay()` methods into one reusable function
-- [x] add method to check if subinput is valid
+- [x] add a method to check if subinput is valid
 - [x] the start button is bugged. It works the first time, and not any time after that
-  - refactor the startGame global function, make anonymous and adjust for reset
+  - refactor the startGame global function, no reason why it can't be an anonymous function handler for the event listener
+  - add a 'reset game' feature
 - [x] make it so you can't click during animations
   - sources to look at: [animation on cssgarden - look under `.treatment .carrot`](http://cssgridgarden.com/)
     - did not actually use the css animation property. the trasition property made the easing very easy, so I'm just going to leave it as is
-
-## Bonus Goals
-- [ ] SASS. SASS first and foremost
-- [ ] adding a modal would be cool (http://jquerymodal.com/)
 
 ## Sources
 - [Google Logo, used as reference for button colors](https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png)
