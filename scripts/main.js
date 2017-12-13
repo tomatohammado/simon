@@ -60,16 +60,17 @@ class Simon extends Game {
   /* Core Simon Game Methods */
   /* ------------------------------------------------- */
   startNewGame () {
-    /* pretty straigtfoward: wipe the slate clean and begin the game again */
-    /* ---------------- */
     this.resetSubCounter()
     this.resetPattern()
     this.incrementPattern()
 
+    /* 1) I flash all of the `game-input`s to visually represent the new game */
+    /* ---------------- */
     let jQInputNodeList = $('.game-input')
     this.toggleDisplay(jQInputNodeList, 'display-selected', this.baseTimeout / 2)
-    this.toggleDisplay(jQInputNodeList, 'unclickable', this.baseTimeout)
-
+    /* 2) I make the jQBoardNode unclickable for the same amount of time I delay the call to .showPattern. This lines up with toggling it again in showPattern, so visually the user doesn't see it */
+    /* ---------------- */
+    this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 1.5)
     setTimeout(() => this.showPattern(), this.baseTimeout * 1.5)
   }
 
@@ -77,7 +78,7 @@ class Simon extends Game {
     let patternLength = this.pattern.length
     let totalDuration = (patternLength + 1) * this.baseTimeout
 
-    /* 1) add classes to the game containers, to highlight the 'display pattern' phase and make the board unclickable for the duration */
+    /* 1) visual feedback for the phase of the game where the pattern is being shown. The input container is enlarged, and the entire board is unclickable for the duration */
     /* ---------------- */
     this.toggleDisplay(this.jQBoardNode, 'unclickable', (totalDuration + this.baseTimeout))
     this.toggleDisplay(this.jQContainerInputsNode, 'display-pattern', totalDuration)

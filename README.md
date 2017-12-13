@@ -53,9 +53,17 @@ So, I refactored them into one `.toggleDisplay` method, that takes `jQNode`, `di
 
 Yet, can I still benefit from making more methods implementing `toggleDisplay`?
 
+I don't think so. There are instances where I repeat the same patterns of calling the `toggleDisplay` method, but in some instances I end up writing more code to create a separate method (write 4 lines to save 2).
+
+Plus, it is always clear what I am doing whenever I call `toggleDisplay`. When something broke in the old methods when I had multiple, it was a little tricky sometimes to keep track of which method I was using at a given time. Once I got the single `toggleDisplay` method to work, I knew the expected behavior and the only thing I had to scrutinize are the arguments I'm passing on a particular line.
+
+---
+I feel I learned the most on this project as I was refactoring the MVP. I had a solution that worked, but cleaning up my code and seeing how I could make my classes and methods simpler gave me more insight in the kinds of things I want to make habit as I improve as a developer.
+
 ## Bonus Goals
 
-- [ ] SASS. SASS first and foremost
+- [ ] Add Strict Mode: an incorrect input resets the game
+- [ ] SASS
 - [ ] adding a modal would be cool <http://jquerymodal.com/>
 
 ## MVP Goals
