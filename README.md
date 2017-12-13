@@ -47,7 +47,7 @@ This surprised me. Using the arrow function expression, the `this` in the nested
 Note, there are some gotchas with this. [This is a good resource showing when `this` isn't what you'd expect with arrow function expressions](https://derickbailey.com/2015/09/28/do-es6-arrow-functions-really-solve-this-in-javascript/)
 
 ---
-At one point, I had **five** separate methods that all did effectively the same thing.
+At one point, I had **_five_** separate methods that all did effectively the same thing.
 
 So, I refactored them into one `.toggleDisplay` method, that takes `jQNode`, `displayClass`, `duration` as arguments. This way, I can specify what classes I want to toggle where, and how long it should take between adding and removing the class
 

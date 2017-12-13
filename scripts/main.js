@@ -6,8 +6,8 @@ class Game {
   /* Parent Class */
   /* ------------------------------------------------- */
   constructor (timeoutDuration) {
-    this.jQBoardNode = $('.container.game-board')
-    this.jQContainerInputsNode = $('.container.game-inputs')
+    this.jQBoardNode = $('.container-game-board')
+    this.jQContainerInputsNode = $('.container-game-inputs')
     this.baseTimeout = timeoutDuration
   }
   /* Utility Methods */
@@ -114,7 +114,7 @@ class Simon extends Game {
       // - reset the subCounter, so the next invocation of checkInputMatch starts from the beginning of the .pattern array
       // - show the pattern again
       /* ---------------- */
-      this.toggleDisplay(this.jQBoardNode, 'display-match-fail', this.baseTimeout)
+      this.toggleDisplay(this.jQBoardNode, 'display-fail', this.baseTimeout)
       this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 2)
       this.resetSubCounter()
       setTimeout(() => {
@@ -128,7 +128,7 @@ class Simon extends Game {
     /* Determines if the current match is the final match in the pattern
     /* ---------------- */
     if (this.subCounter === this.pattern.length) {
-      this.toggleDisplay(this.jQBoardNode, 'display-match-success', this.baseTimeout)
+      this.toggleDisplay(this.jQBoardNode, 'display-success', this.baseTimeout)
       this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 2)
       this.incrementPattern()
       this.resetSubCounter()
@@ -146,15 +146,15 @@ $(document).ready(function () {
   let simonInstance = new Simon(1000)
 
   /* set event listener for starting the game:
-  // - remove the click even listener previously on .button-new-game
+  // - remove the click even listener previously on .button-game-start
   // - make the 'New Game' button a 'Reset Game' button */
   /* ---------------- */
-  let jQNewGameNode = $('.button.new-game')
-  jQNewGameNode.on('click', (e) => {
-    jQNewGameNode.off('click')
-    jQNewGameNode.attr('data-is-started', 'true')
-    jQNewGameNode.text('Reset Game')
-    jQNewGameNode.click((e) => simonInstance.startNewGame())
+  let jQGameStartNode = $('.button.game-start')
+  jQGameStartNode.on('click', (e) => {
+    jQGameStartNode.off('click')
+    jQGameStartNode.attr('data-is-started', 'true')
+    jQGameStartNode.text('Reset Game')
+    jQGameStartNode.click((e) => simonInstance.startNewGame())
 
     /* - make .container.game-inputs clickable
     // - add event listeners to `.game-input`s */

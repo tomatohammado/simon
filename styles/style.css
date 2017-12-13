@@ -43,7 +43,7 @@ main {
   align-items: center;
 }
 
-.container.game-board {
+.container-game-board {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,7 +55,18 @@ main {
   transition: all 1000ms ease;
 }
 
-.container.game-inputs {
+.container-game-board.display-success {
+  background-color: rgba(0, 255, 0, .1);
+  box-shadow: 0 0 2em #0F0;
+}
+
+
+.container-game-board.display-fail {
+  background-color: rgba(255, 0, 0, .1);
+  box-shadow: 0 0 2em #F00;
+}
+
+.container-game-inputs {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -64,20 +75,9 @@ main {
   background-color: rgba(255, 255, 255, .25);
 }
 
-.container.game-inputs.display-pattern {
+.container-game-inputs.display-pattern {
   box-shadow: 0 0 2em #CCC;
   transform: scale(1.2);
-}
-
-.container.game-board.display-match-success {
-  background-color: rgba(0, 255, 0, .1);
-  box-shadow: 0 0 2em #0F0;
-}
-
-
-.container.game-board.display-match-fail {
-  background-color: rgba(255, 0, 0, .1);
-  box-shadow: 0 0 2em #F00;
 }
 
 .game-input {
@@ -147,14 +147,14 @@ main {
   box-shadow: 0 0 1.5em #31AD51;
 }
 
-.container.game-controls {
+.container-game-controls {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.button.new-game {
+.button.game-start {
   display: inline-block;
   padding: 10px 15px;
   margin: 10px;
@@ -164,6 +164,6 @@ main {
   transition: all 250ms ease-in-out;
 }
 
-.unclickable .button.new-game {
+.unclickable .button.game-start {
   opacity: .3;
 }
