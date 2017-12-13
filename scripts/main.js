@@ -65,7 +65,12 @@ class Simon extends Game {
     this.resetSubCounter()
     this.resetPattern()
     this.incrementPattern()
-    this.showPattern()
+
+    let jQInputNodeList = $('.game-input')
+    this.toggleDisplay(jQInputNodeList, 'display-selected', this.baseTimeout / 2)
+    this.toggleDisplay(jQInputNodeList, 'unclickable', this.baseTimeout)
+
+    setTimeout(() => this.showPattern(), this.baseTimeout * 1.5)
   }
 
   showPattern () {

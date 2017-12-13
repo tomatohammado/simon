@@ -55,6 +55,11 @@ main {
   transition: all 1000ms ease;
 }
 
+.container-game-board > section:last-child {
+  /* margin-bottom: 0; */
+  margin-top: 23px;
+}
+
 .container-game-board.display-success {
   background-color: rgba(0, 255, 0, .1);
   box-shadow: 0 0 2em #0F0;
@@ -148,7 +153,6 @@ main {
 }
 
 .container-game-controls {
-  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -157,7 +161,6 @@ main {
 .button.game-start {
   display: inline-block;
   padding: 10px 15px;
-  margin: 10px;
   border: 1px solid #555;
   border-radius: 5px;
   background-color: #222;
