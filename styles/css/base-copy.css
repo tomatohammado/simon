@@ -1,0 +1,108 @@
+.container-game-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 400px;
+  min-height: 200px;
+  background-color: rgba(100, 100, 100, .1);
+  border-radius: 10px;
+  transition: all 1000ms ease;
+}
+
+.container-game-board > section:last-child {
+  /* margin-bottom: 0; */
+  margin-top: 23px;
+}
+
+.container-game-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 25px;
+  transition: all 1000ms ease;
+  background-color: rgba(255, 255, 255, .25);
+}
+
+
+
+.game-input {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  transition-duration: 500ms;
+  border: 1px solid #888;
+  border-radius: 50%;
+}
+
+/* Using colors from Google Logo https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
+.game-input[data-index="0"] {
+  background-color: #FFBC05;
+}
+
+.game-input[data-index="0"]:hover {
+  box-shadow: 0 0 1em #FFBC05;
+}
+
+.game-input[data-index="0"].display-selected {
+  border-color: #FFBC05;
+  box-shadow: 0 0 1.5em #FFBC05;
+}
+
+.game-input[data-index="1"] {
+  background-color: #5C6DF3;
+}
+
+.game-input[data-index="1"]:hover {
+  box-shadow: 0 0 1em #5C6DF3;
+}
+
+.game-input[data-index="1"].display-selected {
+  border-color: #5C6DF3;
+  box-shadow: 0 0 1.5em #5C6DF3;
+}
+
+.game-input[data-index="2"] {
+  background-color: #F63232;
+}
+
+.game-input[data-index="2"]:hover {
+  box-shadow: 0 0 1em #F63232;
+}
+
+.game-input[data-index="2"].display-selected {
+  border-color: #F63232;
+  box-shadow: 0 0 1.5em #F63232;
+}
+
+.game-input[data-index="3"] {
+  background-color: #31AD51;
+}
+
+.game-input[data-index="3"]:hover {
+  box-shadow: 0 0 1em #31AD51;
+}
+
+.game-input[data-index="3"].display-selected {
+  border-color: #31AD51;
+  box-shadow: 0 0 1.5em #31AD51;
+}
+
+.container-game-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button.game-start {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #222;
+  transition: all 250ms ease-in-out;
+}
+
+.unclickable .button.game-start {
+  opacity: .3;
+}

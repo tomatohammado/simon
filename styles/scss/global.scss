@@ -1,8 +1,10 @@
-@import 'base/variables.scss';
-@import 'base/utility.scss';
-@import 'components/body.scss';
+@import 'base/variables';
+@import 'base/utility';
+@import 'components/body';
 @import 'components/top-header';
 @import 'components/top-main';
+
+@import 'components/display-classes'
 
 
 @import url('https://fonts.googleapis.com/css?family=Bungee|Roboto:400,500');
