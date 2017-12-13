@@ -84,7 +84,7 @@ When I had all of the logic nested in one function, it worked just fine, but it 
 ## Bonus Goals
 
 - [ ] SASS. SASS first and foremost
-- [ ] adding a modal would be cool [](http://jquerymodal.com/)
+- [ ] adding a modal would be cool <http://jquerymodal.com/>
 
 ## MVP Goals
 
@@ -101,6 +101,7 @@ When I had all of the logic nested in one function, it worked just fine, but it 
     - did not actually use the css animation property. the trasition property made the easing very easy, so I'm just going to leave it as is
 
 ## Sources
+
 - [Google Logo, used as reference for button colors](https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png)
 - [css attribute selectors](https://www.w3schools.com/css/css_attribute_selectors.asp)
 - [jQuery `$(document).ready()`](https://learn.jquery.com/using-jquery-core/document-ready/)
@@ -117,4 +118,3 @@ When I had all of the logic nested in one function, it worked just fine, but it 
 - [jQuery `.off()`](https://api.jquery.com/off/)
 - [make text-shadow go around letters on all sides](https://stackoverflow.com/a/34595679)
 - [background textures](https://www.transparenttextures.com/)
-
