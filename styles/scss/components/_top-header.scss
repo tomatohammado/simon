@@ -1,0 +1,11 @@
+header {
+  font-family: 'Bungee', cursive;
+  text-align: center;
+  color: #000;
+  /* text-shadow patter via https://stackoverflow.com/a/34595679 */
+  text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 2px -2px 0px #fff, -2px 2px 0px  #fff;
+
+  h1 {
+    margin-bottom: 12.5px;
+  }
+}

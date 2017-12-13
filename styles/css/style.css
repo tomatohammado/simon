@@ -3,5 +3,50 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-div.something {
-  background-color: #FFBC05; }
+.unclickable {
+  pointer-events: none; }
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* background texture via https://www.transparenttextures.com/ */
+  background-image: url("../../assets/graphy-dark.png");
+  background-color: #222;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #EEE; }
+
+header {
+  font-family: 'Bungee', cursive;
+  text-align: center;
+  color: #000;
+  /* text-shadow patter via https://stackoverflow.com/a/34595679 */
+  text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 2px -2px 0px #fff, -2px 2px 0px  #fff; }
+  header h1 {
+    margin-bottom: 12.5px; }
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }

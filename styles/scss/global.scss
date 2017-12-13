@@ -1,11 +1,8 @@
 @import 'base/variables.scss';
+@import 'base/utility.scss';
+@import 'components/body.scss';
+@import 'components/top-header';
+@import 'components/top-main';
+
 
 @import url('https://fonts.googleapis.com/css?family=Bungee|Roboto:400,500');
-
-* {
-  box-sizing: border-box;
-}
-
-div.something {
-  background-color: $google-yellow;
-}

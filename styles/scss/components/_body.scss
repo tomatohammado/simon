@@ -1,0 +1,12 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background texture via https://www.transparenttextures.com/ */
+  background-image: url('../../assets/graphy-dark.png');
+  background-color: #222;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #EEE;
+}
