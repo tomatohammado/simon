@@ -47,39 +47,11 @@ This surprised me. Using the arrow function expression, the `this` in the nested
 Note, there are some gotchas with this. [This is a good resource showing when `this` isn't what you'd expect with arrow function expressions](https://derickbailey.com/2015/09/28/do-es6-arrow-functions-really-solve-this-in-javascript/)
 
 ---
-At one point, I had *five* separate methods that all did effectively the same thing.
+At one point, I had **five** separate methods that all did effectively the same thing.
 
-So, I refactored them into one `.toggleDisplay` method
+So, I refactored them into one `.toggleDisplay` method, that takes `jQNode`, `displayClass`, `duration` as arguments. This way, I can specify what classes I want to toggle where, and how long it should take between adding and removing the class
 
-```js
-this.toggleDisplay(this.boardNodejQ, 'display-match-fail', this.baseTimeout)
-this.toggleDisplay(this.boardNodejQ, 'unclickable', this.baseTimeout * 2)
-```
-
-This is very similar to the `toggleDisplay` code I have for `match-success`
-
-So, conceivably I could make _another_ class, like this:
-
-```js
-toggleDisplayMatch (displayMatchClass) {
-  this.toggleDisplay(this.boardNodejQ, displayMatchClass, this.baseTimeout)
-  this.toggleDisplay(this.boardNodejQ, displayMatchClass, this.baseTimeout * 2)
-}
-```
-
-With that, I can save myself from having to call `toggleDisplay` whenever I want to toggle the `display-match-success` or `display-match-fail`
-
-However, I just typed 4 lines of code to save having to type two extra lines.
-
-You could also argue `toggleDisplayMatch` isn't any more semantic or clear than the general `toggleDisplay` method, if anything I could easier repeat my initial scenario where I have many similar methods behave similarly.
-
-If something goes wrong in one, it could be difficult to figure out which one. With only the single `toggleDisplay` method, once I know it works it will work for any arguements I invoke it with. If there is a problem, I can just check the arguments.
-
-So, this was a good thought exercise for me about when to use another function vs when to refactor it into something more elegant.
-
-Now, I still believe the `checkInputMatch` and `checkIsFinalInput` methods are valuable. Even though I call those methods in series, one after the other, breaking out the logic of each step makes it easier for me to abstract what function I am performing at each step.
-
-When I had all of the logic nested in one function, it worked just fine, but it was much harder to follow. Each method accomplishes one major task, which is much easier to keep track of.
+Yet, can I still benefit from making more methods implementing `toggleDisplay`?
 
 ## Bonus Goals
 
