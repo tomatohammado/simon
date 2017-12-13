@@ -17,7 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   /* background texture via https://www.transparenttextures.com/ */
-  background-image: url('../assets/graphy-dark.png');
+  background-image: url('../../assets/graphy-dark.png');
   background-color: #222;
 }
 
