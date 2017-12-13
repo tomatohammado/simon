@@ -7,6 +7,7 @@ with `Math.random()`, you can get a number between 0 and 1
 it is inclusive of 0, meaning you can get 0, but exclusive of 1, so 1 is impossible.
 
 so, for my random index method which implements this:
+
 ```js
 return Math.floor(Math.random() * $('.game-input').length)
 ```
@@ -21,6 +22,7 @@ One example is within callback functions. `this` often refers to the global `Win
 So you can use Function methods like `.bind()` (`.call()` and `.apply()` are also options, but they all are used for different purposes and use cases).
 
 Take this code for example:
+
 ```js
 somePropertyMethod () {
   let self = this
@@ -31,6 +33,7 @@ somePropertyMethod () {
 This works great! Now, passing the `this.showPattern` method in the setTimeout higher order function will use the reference `self`, refering to the object instance the method is being invoked under, for the `this` in `.showPattern()`
 
 Yet, this _also_ works:
+
 ```js
 somePropertyMethod () {
   setTimeout(() => {
@@ -79,10 +82,12 @@ Now, I still believe the `checkInputMatch` and `checkIsFinalInput` methods are v
 When I had all of the logic nested in one function, it worked just fine, but it was much harder to follow. Each method accomplishes one major task, which is much easier to keep track of.
 
 ## Bonus Goals
+
 - [ ] SASS. SASS first and foremost
-- [ ] adding a modal would be cool (http://jquerymodal.com/)
+- [ ] adding a modal would be cool [](http://jquerymodal.com/)
 
 ## MVP Goals
+
 - [x] I have to do something reaaaaally hacky to get the playPattern() function to work
   - because all of the functions run at the same time, I have to set increment a timeout variable based on the current index. Is there a better way?
 - [x] making `toggleDisplaySelected` a method and not a global function
