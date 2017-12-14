@@ -51,6 +51,19 @@ class Simon extends Game {
     this.pattern = []
   }
 
+  toggleStrictMode () {
+    switch (this.strictMode) {
+      case true:
+        this.strictMode = false
+        break
+      case false:
+        this.strictMode = true
+        break
+      default:
+        console.log('invalid objectInstance.strictMode property')
+    }
+  }
+
   /* Core Simon Game Methods */
   /* ------------------------------------------------- */
   startNewGame () {

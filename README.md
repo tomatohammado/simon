@@ -68,7 +68,7 @@ I feel I learned the most on this project as I was refactoring the MVP. I had a 
 - [ ] Add Strict Mode: an incorrect input resets the game
   1. [ ] javascript
      - [x] implement logic in checkInputMatch() method
-     - [ ] create toggleStrictMode() method
+     - [x] create toggleStrictMode() method
      - [ ] add data attribute for strict mode
   2. [ ] styles
   3. [ ] 'show pattern' feature that only works when not in strict mode
