@@ -26,10 +26,7 @@ header {
   text-align: center;
   color: #000;
   /* text-shadow patter via https://stackoverflow.com/a/34595679 */
-  text-shadow: 2px 2px 0px #fff, 
-              -2px -2px 0px #fff, 
-               2px -2px 0px #fff, 
-              -2px 2px 0px  #fff;
+  text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 2px -2px 0px #fff, -2px 2px 0px  #fff;
 }
 
 header h1 {
@@ -59,7 +56,7 @@ body > main {
   /* flex-basis: 400px; */
   min-height: 200px;
   background-color: rgba(100, 100, 100, .1);
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
   transition: all 1000ms ease;
 }
 
@@ -207,4 +204,23 @@ body > main {
   justify-content: center;
   align-items: center;
   min-width: 100px;
+  min-height: 200px;
+  background-color: rgba(255, 255, 255, .4);
+  border-radius: 0 10px 10px 0;
+}
+
+.button.game-strict-toggle {
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  margin: 10px;
+  padding: 0 10px;
+  background-color: #333;
+  border-radius: 5px;
+  color: #AAA;
+}
+
+[data-is-strict="true"] .button.game-strict-toggle {
+  text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px  #fff;
+  color: #000;
 }

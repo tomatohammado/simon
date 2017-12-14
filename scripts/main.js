@@ -55,11 +55,11 @@ class Simon extends Game {
     switch (this.strictMode) {
       case true:
         this.strictMode = false
-        this.jQGameStartNode.attr('data-is-strict', 'false')
+        this.jQBoardNode.attr('data-is-strict', 'false')
         break
       case false:
         this.strictMode = true
-        this.jQGameStartNode.attr('data-is-strict', 'true')
+        this.jQBoardNode.attr('data-is-strict', 'true')
         break
       default:
         console.log('invalid objectInstance.strictMode property')
@@ -124,7 +124,7 @@ class Simon extends Game {
       // - reset the subCounter, so the next invocation of checkInputMatch starts from the beginning of the .pattern array
       // - show the pattern again
       /* ---------------- */
-      this.toggleDisplay(this.jQBoardNode, 'display-fail', this.baseTimeout)
+      this.toggleDisplay($('.container-game-main'), 'display-fail', this.baseTimeout)
       this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 2)
 
       this.checkIsStrictMode()
@@ -150,7 +150,7 @@ class Simon extends Game {
   checkIsFinalInput () {
     /* Determines if the current match is the final match in the pattern */
     if (this.subCounter === this.pattern.length) {
-      this.toggleDisplay(this.jQBoardNode, 'display-success', this.baseTimeout)
+      this.toggleDisplay($('.container-game-main'), 'display-success', this.baseTimeout)
       this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 2)
       this.incrementPattern()
       this.resetSubCounter()
@@ -166,6 +166,8 @@ class Simon extends Game {
 $(document).ready(function () {
   /* create instance of SimonGame */
   let simonInstance = new Simon(1000, false)
+
+  $('.button.game-strict-toggle').click((eventObject) => simonInstance.toggleStrictMode())
 
   /* set event listener for starting the game:
   // - remove the click even listener previously on .button-game-start
