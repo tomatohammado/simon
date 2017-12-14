@@ -62,7 +62,12 @@ I feel I learned the most on this project as I was refactoring the MVP. I had a 
 
 ## Bonus Goals
 
+- [x] add styles:
+  - [x] 'start game' vs 'reset game'
+  - [x] darkend colors for `.game-input` default vs ::hover vs .selected
 - [ ] Add Strict Mode: an incorrect input resets the game
+  1. [ ] javascript logic
+  2. [ ] styles
 - [ ] SASS
 - [ ] adding a modal would be cool <http://jquerymodal.com/>
 
