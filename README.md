@@ -104,6 +104,7 @@ It also does not like having more than one `<main>`, which I can understand. I d
 And since we're talking about validators, the [W3 css validator](https://jigsaw.w3.org/css-validator/) doesn't recognize the `pointer-events` property, for whatever reason.
 
 It also does not like when I set the border-color to match the background-color, but I don't have time to fix that so it's staying for now.
+
 ---
 I feel I learned the most on this project as I was refactoring the MVP. I had a solution that worked, but cleaning up my code and seeing how I could make my classes and methods simpler gave me more insight in the kinds of things I want to make habit as I improve as a developer.
 
