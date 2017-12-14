@@ -15,7 +15,6 @@ class Game {
   toggleDisplay (jQNode, displayClass, duration) {
     /* - adds a display class to the give node jQuery object,
     // - then removes that class after a duration */
-    /* ---------------- */
     jQNode.toggleClass(displayClass)
     setTimeout(() => jQNode.toggleClass(displayClass), duration)
   }
@@ -33,27 +32,22 @@ class Simon extends Game {
   /* Utility Methods */
   /* ------------------------------------------------- */
   getRandomPatternIndex () {
-    /* Return random index for one of the possible buttons
-    // - see README.md for notes on Math.random() */
-    /* ---------------- */
+    /* Return random index for one of the possible buttons */
     return Math.floor(Math.random() * $('.game-input').length)
   }
 
   incrementPattern () {
     /* Adds a random .game-input index to the instance's .pattern array */
-    /* ---------------- */
     this.pattern.push(this.getRandomPatternIndex())
   }
 
   resetSubCounter () {
     /* resets subCounter to default 0 */
-    /* ---------------- */
     this.subCounter = 0
   }
 
   resetPattern () {
     /* resets pattern to default empty array */
-    /* ---------------- */
     this.pattern = []
   }
 
@@ -65,11 +59,9 @@ class Simon extends Game {
     this.incrementPattern()
 
     /* 1) I flash all of the `game-input`s to visually represent the new game */
-    /* ---------------- */
     let jQInputNodeList = $('.game-input')
     this.toggleDisplay(jQInputNodeList, 'display-selected', this.baseTimeout / 2)
     /* 2) I make the jQBoardNode unclickable for the same amount of time I delay the call to .showPattern. This lines up with toggling it again in showPattern, so visually the user doesn't see it */
-    /* ---------------- */
     this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 1.5)
     setTimeout(() => this.showPattern(), this.baseTimeout * 1.5)
   }
@@ -79,12 +71,10 @@ class Simon extends Game {
     let totalDuration = (patternLength + 1) * this.baseTimeout
 
     /* 1) visual feedback for the phase of the game where the pattern is being shown. The input container is enlarged, and the entire board is unclickable for the duration */
-    /* ---------------- */
     this.toggleDisplay(this.jQBoardNode, 'unclickable', (totalDuration + this.baseTimeout))
     this.toggleDisplay(this.jQContainerInputsNode, 'display-pattern', totalDuration)
 
     /* 2) show each element in the pattern */
-    /* ---------------- */
     for (let i = 0; i < patternLength; i++) {
       let timeout = (i + 1) * this.baseTimeout
       let jQPatternItemNode = $(`[data-index="${this.pattern[i]}"]`)
@@ -96,8 +86,7 @@ class Simon extends Game {
   }
 
   getSubInput (e) {
-    /* event handler for the `.game-input`s:
-    /* ---------------- */
+    /* event handler for the `.game-input`s */
     let selected = $(e.target)
     this.checkInputMatch(selected)
   }
@@ -131,8 +120,7 @@ class Simon extends Game {
   }
 
   checkIsFinalInput () {
-    /* Determines if the current match is the final match in the pattern
-    /* ---------------- */
+    /* Determines if the current match is the final match in the pattern */
     if (this.subCounter === this.pattern.length) {
       this.toggleDisplay(this.jQBoardNode, 'display-success', this.baseTimeout)
       this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 2)
@@ -157,18 +145,26 @@ $(document).ready(function () {
   /* ---------------- */
   let jQGameStartNode = $('.button.game-start')
   jQGameStartNode.on('click', (e) => {
+    /* first, turn off the current event listener and set the -started attribut to true */
     jQGameStartNode.off('click')
     jQGameStartNode.attr('data-is-started', 'true')
-    jQGameStartNode.text('Reset Game')
-    jQGameStartNode.click((e) => simonInstance.startNewGame())
 
-    /* - make .container.game-inputs clickable
-    // - add event listeners to `.game-input`s */
+    /* Begin Game
+    // there is a small delay so make the animations a little smoother
+    // I put some of the other events in here to prevent a bug that could have occured in the unlikely even the user clicks the button again within 62.5ms */
     /* ---------------- */
-    simonInstance.jQContainerInputsNode.removeClass('unclickable')
-    $('.game-input').click((eventObject) => simonInstance.getSubInput(eventObject))
+    setTimeout(() => {
+      /* new event listener on the .game-start node */
+      jQGameStartNode.text('Reset Game')
+      jQGameStartNode.click((e) => simonInstance.startNewGame())
 
-    /* Begin game */
-    simonInstance.startNewGame()
+      /* - make .container.game-inputs clickable
+      // - add event listeners to `.game-input`s */
+      simonInstance.jQContainerInputsNode.removeClass('unclickable')
+      $('.game-input').click((eventObject) => simonInstance.getSubInput(eventObject))
+
+      /* finally, call the startNewGameMethod */
+      simonInstance.startNewGame()
+    }, 62.5)
   })
 })

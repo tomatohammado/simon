@@ -167,6 +167,14 @@ main {
   transition: all 250ms ease-in-out;
 }
 
+.button.game-start[data-is-started="false"] {
+  box-shadow: 0 0 1em #EEE;
+}
+
+.button.game-start[data-is-started="true"] {
+  background-color: #222;
+}
+
 .unclickable .button.game-start {
   opacity: .3;
 }
