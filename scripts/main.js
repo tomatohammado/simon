@@ -124,7 +124,7 @@ class Simon extends Game {
       // - reset the subCounter, so the next invocation of checkInputMatch starts from the beginning of the .pattern array
       // - show the pattern again
       /* ---------------- */
-      this.toggleDisplay($('.container-game-main'), 'display-fail', this.baseTimeout)
+      this.toggleDisplay($('.container-game-visible'), 'display-fail', this.baseTimeout)
       this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 2)
 
       this.checkIsStrictMode()
@@ -150,7 +150,7 @@ class Simon extends Game {
   checkIsFinalInput () {
     /* Determines if the current match is the final match in the pattern */
     if (this.subCounter === this.pattern.length) {
-      this.toggleDisplay($('.container-game-main'), 'display-success', this.baseTimeout)
+      this.toggleDisplay($('.container-game-visible'), 'display-success', this.baseTimeout)
       this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 2)
       this.incrementPattern()
       this.resetSubCounter()

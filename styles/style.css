@@ -60,13 +60,22 @@ body > main {
   transition: all 1000ms ease;
 }
 
-.container-game-main.display-success {
+.container-game-visible {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 1000ms ease;
+  border-radius: 10px;
+}
+
+.container-game-visible.display-success {
   background-color: rgba(0, 255, 0, .1);
   box-shadow: 0 0 2em #0F0;
 }
 
 
-.container-game-main.display-fail {
+.container-game-visible.display-fail {
   background-color: rgba(255, 0, 0, .1);
   box-shadow: 0 0 2em #F00;
 }
