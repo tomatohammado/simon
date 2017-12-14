@@ -33,7 +33,7 @@ header h1 {
   margin-bottom: 12.5px;
 }
 
-body > div.container-primary {
+main {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -105,7 +105,7 @@ body > div.container-primary {
   height: 30px;
   margin: 10px;
   transition-duration: 500ms;
-  border: 1px solid #888;
+  border: 1px solid #333;
   border-radius: 50%;
 }
 
@@ -126,7 +126,7 @@ body > div.container-primary {
 
 .game-input[data-index="0"].display-selected {
   background-color: #FFBC05;
-  border-color: #FFBC05;
+  border-width: 0;
   box-shadow: 0 0 1.5em #FFBC05;
 }
 
@@ -141,7 +141,7 @@ body > div.container-primary {
 
 .game-input[data-index="1"].display-selected {
   background-color: #5C6DF3;
-  border-color: #5C6DF3;
+  border-width: 0;
   box-shadow: 0 0 1.5em #5C6DF3;
 }
 
@@ -156,7 +156,7 @@ body > div.container-primary {
 
 .game-input[data-index="2"].display-selected {
   background-color: #F63232;
-  border-color: #F63232;
+  border-width: 0;
   box-shadow: 0 0 1.5em #F63232;
 }
 
@@ -171,7 +171,7 @@ body > div.container-primary {
 
 .game-input[data-index="3"].display-selected {
   background-color: #31AD51;
-  border-color: #31AD51;
+  border-width: 0;
   box-shadow: 0 0 1.5em #31AD51;
 }
 
