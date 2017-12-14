@@ -23,11 +23,11 @@ class Game {
 class Simon extends Game {
   /* Child Class */
   /* ------------------------------------------------- */
-  constructor (timeoutDuration) {
+  constructor (timeoutDuration, isStrict) {
     super(timeoutDuration)
     this.pattern = []
     this.subCounter = 0
-    this.isStrict = false
+    this.strictMode = isStrict
   }
   /* Utility Methods */
   /* ------------------------------------------------- */
@@ -111,12 +111,25 @@ class Simon extends Game {
       /* ---------------- */
       this.toggleDisplay(this.jQBoardNode, 'display-fail', this.baseTimeout)
       this.toggleDisplay(this.jQBoardNode, 'unclickable', this.baseTimeout * 2)
-      this.resetSubCounter()
+
+      this.checkIsStrictMode()
+    }
+  }
+
+  checkIsStrictMode () {
+    if (this.strictMode === true) {
+    /* If strict mode is true, restart the game after the timeout for
+    displaying the failed input match from checkInputMatch() */
       setTimeout(() => {
+        this.startNewGame()
+      }, this.baseTimeout * 2)
+    } else {
+    /* otherwise, reset the subcounter and show the same pattern again */
+      setTimeout(() => {
+        this.resetSubCounter()
         this.showPattern()
       }, this.baseTimeout * 2)
     }
-    /* - might add functionality if 'strict mode' is on */
   }
 
   checkIsFinalInput () {
@@ -137,7 +150,7 @@ class Simon extends Game {
 /* ================================================= */
 $(document).ready(function () {
   /* create instance of SimonGame */
-  let simonInstance = new Simon(1000)
+  let simonInstance = new Simon(1000, false)
 
   /* set event listener for starting the game:
   // - remove the click even listener previously on .button-game-start
