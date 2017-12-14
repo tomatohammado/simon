@@ -55,9 +55,11 @@ class Simon extends Game {
     switch (this.strictMode) {
       case true:
         this.strictMode = false
+        this.jQGameStartNode.attr('data-is-strict', 'false')
         break
       case false:
         this.strictMode = true
+        this.jQGameStartNode.attr('data-is-strict', 'true')
         break
       default:
         console.log('invalid objectInstance.strictMode property')

@@ -66,10 +66,10 @@ I feel I learned the most on this project as I was refactoring the MVP. I had a 
   - [x] 'start game' vs 'reset game'
   - [x] darkend colors for `.game-input` default vs ::hover vs .selected
 - [ ] Add Strict Mode: an incorrect input resets the game
-  1. [ ] javascript
+  1. [x] javascript
      - [x] implement logic in checkInputMatch() method
      - [x] create toggleStrictMode() method
-     - [ ] add data attribute for strict mode
+     - [x] add data attribute for strict mode, implement in toggleStrictMode()
   2. [ ] styles
   3. [ ] 'show pattern' feature that only works when not in strict mode
 - [ ] SASS
