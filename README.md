@@ -70,7 +70,7 @@ I feel I learned the most on this project as I was refactoring the MVP. I had a 
      - [x] implement logic in checkInputMatch() method
      - [x] create toggleStrictMode() method
      - [x] add data attribute for strict mode, implement in toggleStrictMode()
-  2. [ ] styles
+  2. [x] styles
   3. [ ] 'show pattern' feature that only works when not in strict mode
 - [ ] SASS
 - [ ] adding a modal would be cool <http://jquerymodal.com/>
