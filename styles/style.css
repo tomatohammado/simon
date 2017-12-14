@@ -101,53 +101,61 @@ main {
 
 /* Using colors from Google Logo https://en.wikipedia.org/wiki/Google_logo#/media/File:Google-favicon-2015.png */
 .game-input[data-index="0"] {
-  background-color: #FFBC05;
+  background-color: #d19900;
 }
 
 .game-input[data-index="0"]:hover {
+  background-color: #ebac00;
   box-shadow: 0 0 1em #FFBC05;
 }
 
 .game-input[data-index="0"].display-selected {
+  background-color: #FFBC05;
   border-color: #FFBC05;
   box-shadow: 0 0 1.5em #FFBC05;
 }
 
 .game-input[data-index="1"] {
-  background-color: #5C6DF3;
+  background-color: #2c42f0;
 }
 
 .game-input[data-index="1"]:hover {
+  background-color: #4458f1;
   box-shadow: 0 0 1em #5C6DF3;
 }
 
 .game-input[data-index="1"].display-selected {
+  background-color: #5C6DF3;
   border-color: #5C6DF3;
   box-shadow: 0 0 1.5em #5C6DF3;
 }
 
 .game-input[data-index="2"] {
-  background-color: #F63232;
+  background-color: #eb0a0a;
 }
 
 .game-input[data-index="2"]:hover {
+  background-color: #f51a1a;
   box-shadow: 0 0 1em #F63232;
 }
 
 .game-input[data-index="2"].display-selected {
+  background-color: #F63232;
   border-color: #F63232;
   box-shadow: 0 0 1.5em #F63232;
 }
 
 .game-input[data-index="3"] {
-  background-color: #31AD51;
+  background-color: #26853e;
 }
 
 .game-input[data-index="3"]:hover {
+  background-color: #2b9948;
   box-shadow: 0 0 1em #31AD51;
 }
 
 .game-input[data-index="3"].display-selected {
+  background-color: #31AD51;
   border-color: #31AD51;
   box-shadow: 0 0 1.5em #31AD51;
 }
