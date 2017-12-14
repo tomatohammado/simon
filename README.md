@@ -1,5 +1,37 @@
 # WDI Project 1: Simon
 
+## Technologies
+
+In addition to vanilla HTML, CSS, and Javascript, I relied heavily on jQuery.
+
+I also experimented with SASS, but I realized I needed to plan out the file structure for the SASS architecture, and I deferred to work on implementing other features.
+
+I did, however, utilize a simon-sandbox repo where I did use SASS (.scss specifically) to utilize the `darken($color, $amount)` function in order to quickly get nicer colors for the .game-input elements in their default, :hover, and .selected states.
+
+## Approach
+
+I drafted out my plan for implementing the Simon game before I started coding, but I quickly learned I did not do enough.
+
+I initially broke down the game into 'Display Pattern' and 'User Input' phases, and when the user successfully match a complete pattern the pattern would increment by one and the cycle would continue.
+
+I knew I had to check each input against the pattern to verify the validity of the input, but that is about the extent to which I thought about the problem before starting to write the code.
+
+And boy, was it rough at first.
+
+I didn't consider the functions I would need in more detail. For example, I didn't realize at first that I would need some way of starting a game (vs having it start automatically on page load).
+
+That stopped my momentum because I had to go back to the planning stage frequently as I discovered the holes in my original plan.
+
+A few hours in, I realized the whole thing would be easier if I made the game and object and implemented all of my functions as methods. So that was the first major refactoring I had to do.
+
+After I made the decision to use `class` and create an object, things started to click. But I realize looking back that if I had thought more about the problem to begin with, I could have arrived at that conclusion much earlier and save myself time and effort.
+
+## Installation Instructions
+
+There is nothing to install.
+
+Easy, right?
+
 ## Things I Learned
 
 with `Math.random()`, you can get a number between 0 and 1
@@ -58,6 +90,21 @@ I don't think so. There are instances where I repeat the same patterns of callin
 Plus, it is always clear what I am doing whenever I call `toggleDisplay`. When something broke in the old methods when I had multiple, it was a little tricky sometimes to keep track of which method I was using at a given time. Once I got the single `toggleDisplay` method to work, I knew the expected behavior and the only thing I had to scrutinize are the arguments I'm passing on a particular line.
 
 ---
+The [W3 html validator](https://validator.w3.org/) has some opinions I don't fully agree with.
+
+It gives an error if a `<section>` element does not container a header.
+
+I used `<section>` because I like the semantics, and it wouldn't make sense to use a header (unless I hide it with `display:none` or something)
+
+Actually, that is legit, maybe I should have done that.
+
+It also does not like having more than one `<main>`, which I can understand. I don't _like_ it, but I get it.
+
+---
+And since we're talking about validators, the [W3 css validator](https://jigsaw.w3.org/css-validator/) doesn't recognize the `pointer-events` property, for whatever reason.
+
+It also does not like when I set the border-color to match the background-color, but I don't have time to fix that so it's staying for now.
+---
 I feel I learned the most on this project as I was refactoring the MVP. I had a solution that worked, but cleaning up my code and seeing how I could make my classes and methods simpler gave me more insight in the kinds of things I want to make habit as I improve as a developer.
 
 ## Bonus Goals
@@ -107,3 +154,4 @@ I feel I learned the most on this project as I was refactoring the MVP. I had a 
 - [jQuery `.off()`](https://api.jquery.com/off/)
 - [make text-shadow go around letters on all sides](https://stackoverflow.com/a/34595679)
 - [background textures](https://www.transparenttextures.com/)
+- [vertically align text without flexbox}](https://stackoverflow.com/questions/8865458/how-do-i-vertically-center-text-with-css)

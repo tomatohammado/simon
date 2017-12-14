@@ -33,7 +33,7 @@ header h1 {
   margin-bottom: 12.5px;
 }
 
-body > main {
+body > div.container-primary {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -80,7 +80,7 @@ body > main {
   box-shadow: 0 0 2em #F00;
 }
 
-.container-game-main > section:last-child {
+.container-game-main > div:last-child {
   /* margin-bottom: 0; */
   margin-top: 23px;
 }
