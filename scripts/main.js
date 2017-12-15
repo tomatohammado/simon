@@ -52,18 +52,9 @@ class Simon extends Game {
   }
 
   toggleStrictMode () {
-    switch (this.strictMode) {
-      case true:
-        this.strictMode = false
-        this.jQBoardNode.attr('data-is-strict', 'false')
-        break
-      case false:
-        this.strictMode = true
-        this.jQBoardNode.attr('data-is-strict', 'true')
-        break
-      default:
-        console.log('invalid objectInstance.strictMode property')
-    }
+    // AS: You can simplify this by doing the following!
+    this.jQBoardNode.attr('data-is-strict', this.strictMode.toString())
+    this.strictMode = !this.strictMode
   }
 
   /* Core Simon Game Methods */

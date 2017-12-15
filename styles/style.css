@@ -16,6 +16,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* AS: Remove commented out code in production! */
   /* background texture via https://www.transparenttextures.com/ */
   background-image: url('../assets/graphy-dark.png');
   background-color: #222;
